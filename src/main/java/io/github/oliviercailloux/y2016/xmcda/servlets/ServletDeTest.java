@@ -36,18 +36,15 @@ public class ServletDeTest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter printWriter= response.getWriter();
-		printWriter.println("<h2>");
-		printWriter.println("Entrée dans la servlet à "
-		+ new Date().toLocaleString());
-		printWriter.println("</h2>");
+		printWriter.println("Objet Alternative crée avec la date "+ new Date().toLocaleString());
 		
 		Alternative alternative = new Alternative();
 		  alternative.setId("a01");
-		  alternative.setDate("12/02/2017");
+		  alternative.setDate(""+new Date().toLocaleString());
 
 		  try {
 
-			File file = new File("C:\\file.xml");
+			File file = new File("file.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Alternative.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -55,14 +52,11 @@ public class ServletDeTest extends HttpServlet {
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
 			jaxbMarshaller.marshal(alternative, file);
-			jaxbMarshaller.marshal(alternative, System.out);
+			//jaxbMarshaller.marshal(alternative, System.out);
 
 		      } catch (JAXBException e) {
 			e.printStackTrace();
 		      }
-
-
-		
 	}
 
 	/**
