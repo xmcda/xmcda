@@ -10,8 +10,18 @@
   	<description></description>
   	<servlet-class>servlets.Accueil</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CreateObject</servlet-name>
+  	<display-name>CreateObject</display-name>
+  	<description></description>
+  	<servlet-class>CreateObject</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Accueil</servlet-name>
   	<url-pattern>/Accueil</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateObject</servlet-name>
+  	<url-pattern>/CreateObject</url-pattern>
   </servlet-mapping>
 </web-app>
