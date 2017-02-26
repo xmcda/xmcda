@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xac:AttrAndCrit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmcda-modular.github.io/2016/examples/AttrAndCrit AttrAndCrit.xsd"
+	xmlns:xac="http://xmcda-modular.github.io/2016/examples/AttrAndCrit"
+	xmlns:xm="http://xmcda-modular.github.io/2016/xsd">
+	<attribute>
+		<id>attr1</id>
+	</attribute>
+	<criterion xsi:type="xm:directUtilityCriterion">
+		<id>c1</id>
+		<attribute ref="attr1" />
+		<value>
+			<alternative ref="alt1" />
+			<utility>2.0</utility>
+		</value>
+	</criterion>
+</xac:AttrAndCrit>
