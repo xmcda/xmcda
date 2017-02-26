@@ -11,9 +11,13 @@
     <form name="form1" id="formulairedecontact" method="post" action="">	
         <label>
 		<span><a href="alternative.jsp">Ajouter une alternative</a></span>
-        </label><label>
+        </label>
+        	</br>
+        <label>
 		<span><a href="critere.jsp">Ajouter une critère</a></span>
-        </label><label>
+        </label>
+        	</br>
+        <label>
 		<span><a href="performanceTable.jsp">Ajouter une performanceTable</a></span>
         </label>
 	</form>

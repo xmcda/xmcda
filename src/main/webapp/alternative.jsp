@@ -8,13 +8,13 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <form name="form1" id="formulairedecontact" method="post" action="">	
+    <form name="form1" id="formulairedecontact" method="post" action="/CreateAlternativeObject">	
         <label>
 		<span>Alternative :</span>
         <input type="text" placeholder="Tapez votre alternative" name="alternative" id="alternative">
         </label>
         		
-		<input class="sendButton" type="submit" name="Submit" value="Ajouter objets">
+		<input class="sendButton" type="submit" name="Submit" value="Ajouter alternative">
 		<span><a href="index.jsp">Retour</a></span>
 	</form>
 	</div>
