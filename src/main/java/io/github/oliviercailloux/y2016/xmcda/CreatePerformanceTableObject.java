@@ -204,7 +204,7 @@ public class CreatePerformanceTableObject extends HttpServlet {
 			
 			request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
 			//request.setAttribute("result", result);
-			request.getServletContext().getRequestDispatcher("/mesurementCreated.jsp").forward(request, response);
+			request.getServletContext().getRequestDispatcher("/categorieCreated.jsp").forward(request, response);
 		
 		}
 
