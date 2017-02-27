@@ -10,16 +10,12 @@
     <div id="notreformulaire">
     <form name="form1" id="formulairedecontact" method="post" action="">	
         <label>
-		<span><a href="alternative.jsp">Ajouter une alternative</a></span>
+		<span>Critère :</span>    
+		<input type="text" placeholder="Tapez votre critère" name="critere" id="critere">
         </label>
-        	</br>
-        <label>
-		<span><a href="critere.jsp">Ajouter une critère</a></span>
-        </label>
-        	</br>
-        <label>
-		<span><a href="performanceTable.jsp">Ajouter une performanceTable</a></span>
-        </label>
+        
+        <input class="sendButton" type="submit" name="Submit" value="Ajouter objets">
+        <span><a href="index.jsp">Retour</a></span>
 	</form>
 	</div>
    </div>	

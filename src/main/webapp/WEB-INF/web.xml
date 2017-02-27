@@ -10,8 +10,28 @@
   	<description></description>
   	<servlet-class>servlets.Accueil</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CreateCritereObject</servlet-name>
+  	<display-name>CreateCritereObject</display-name>
+  	<description></description>
+  	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreateCritereObject</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CreateAlternativeObject</servlet-name>
+  	<display-name>CreateAlternativeObject</display-name>
+  	<description></description>
+  	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreateAlternativeObject</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Accueil</servlet-name>
   	<url-pattern>/Accueil</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateCritereObject</servlet-name>
+  	<url-pattern>/CreateCritereObject</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreateAlternativeObject</servlet-name>
+  	<url-pattern>/CreateAlternativeObject</url-pattern>
   </servlet-mapping>
 </web-app>
