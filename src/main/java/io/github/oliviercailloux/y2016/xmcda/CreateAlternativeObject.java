@@ -64,7 +64,7 @@ public class CreateAlternativeObject extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("alternative");		
+		String alternative = request.getParameter("alternative");		
 		JAXBContext jc = null;
 		try {
 			jc = JAXBContext.newInstance(Alternative.class);
@@ -85,9 +85,9 @@ public class CreateAlternativeObject extends HttpServlet {
 		final String namespace = annotation.namespace();
 
 		final Alternative alt = f.createAlternative();
-		alt.setId(id);
+		alt.setId(alternative);
 
-		final QName altQName = new QName(namespace, "myAlt", "xm");
+		final QName altQName = new QName(namespace, "alternative", "xs");
 		final JAXBElement<Alternative> altEl = new JAXBElement<>(altQName, Alternative.class, alt);
 
 		final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -101,8 +101,8 @@ public class CreateAlternativeObject extends HttpServlet {
 
 		final Document doc = docBuilder.newDocument();
 		docFactory.setNamespaceAware(true);
-		final Element rootElement = doc.createElementNS("myNS", "m:AltAndCrit");
-		rootElement.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:xm", namespace);
+		final Element rootElement = doc.createElementNS("namespace", "m:Alternative");
+		rootElement.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:xs", namespace);
 		doc.appendChild(rootElement);
 
 		try {

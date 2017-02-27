@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.y2016.xmcda;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -61,18 +62,17 @@ public class CreateCritereObject extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String critere = request.getParameter("critere");		 
 		String pref = request.getParameter("preference");
+		
 		JAXBContext jc = null;
 		try {
 			jc = JAXBContext.newInstance(Criterion.class);
-		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
+		} catch (JAXBException e) {		
 			e.printStackTrace();
 		}
 		Marshaller marshaller = null;
 		try {
 			marshaller = jc.createMarshaller();
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		final ObjectFactory f = new ObjectFactory();
@@ -80,32 +80,30 @@ public class CreateCritereObject extends HttpServlet {
 		final XmlSchema annotation = ObjectFactory.class.getPackage().getAnnotation(XmlSchema.class);
 		final String namespace = annotation.namespace();
 
-		final DirectedCriterion crit = f.createDirectedCriterion();
-		crit.setId(critere);
-		crit.setPreferenceDirection(pref);
+		final DirectedCriterion directedCriterion = f.createDirectedCriterion();
+		directedCriterion.setId(critere);
+		directedCriterion.setPreferenceDirection(pref);
 	
-		final QName critQName = new QName(namespace, "myCrit", "xm");
-		final JAXBElement<Criterion> critEl = new JAXBElement<>(critQName, Criterion.class, crit);
+		final QName critQName = new QName(namespace, "critere", "xs");
+		final JAXBElement<Criterion> critEl = new JAXBElement<>(critQName, Criterion.class, directedCriterion);
 
 		final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
 		try {
 			docBuilder = docFactory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		final Document doc = docBuilder.newDocument();
 		docFactory.setNamespaceAware(true);
-		final Element rootElement = doc.createElementNS("myNS", "m:AltAndCrit");
-		rootElement.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:xm", namespace);
+		final Element rootElement = doc.createElementNS("namespace", "m:Critere");
+		rootElement.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:xs", namespace);
 		doc.appendChild(rootElement);
 
 		try {
 			marshaller.marshal(critEl, rootElement);
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -114,7 +112,6 @@ public class CreateCritereObject extends HttpServlet {
 		try {
 			transformer = transformerFactory.newTransformer();
 		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -122,6 +119,7 @@ public class CreateCritereObject extends HttpServlet {
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		final DOMSource source = new DOMSource(doc);
 		// final StreamResult result = new StreamResult(new File("file.xml"));
+		//final StreamResult resultFile = new StreamResult(new File("file.xml")); added by me
 		StringWriter writer = new StringWriter();
 		final StreamResult resultStream = new StreamResult(writer);
 		try {

@@ -8,12 +8,13 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <form name="form1" id="formulairedecontact" method="post" action="">	
+    <form name="form1" id="formulairedecontact" method="post" action="CreatePerformanceTableObject">	
         <label>
 		<span>PerformanceTable :
-			<select>
-				<option name="mesurement">Mesurement :</option>
-				<option name="categorie">Catégorie :</option>
+			<select name="mesurementOrCat">
+				<option name="">Choisir</option>
+				<option>Mesurement :</option>
+				<option>Catégorie :</option>
 			</select>
 		</span>
         <input type="tel" placeholder="Entrez votre utilité (entier)" name="utilite" id="utilite">

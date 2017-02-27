@@ -8,7 +8,7 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <p>Votre alternative : <strong> <%=request.getAttribute("result")%> </strong> a été créee</p>
+    <p>Votre mesurement : <strong> <%=request.getAttribute("result")%> </strong> a été créee</p>
     <form name="form1" id="formulairedecontact" method="post" action="CreateAlternativeObject">	
         <label>
 		<span>Create an other alternative :</span>
