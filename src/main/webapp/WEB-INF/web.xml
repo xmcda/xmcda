@@ -22,6 +22,12 @@
   	<description></description>
   	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreateAlternativeObject</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CreatePerformanceTableObject</servlet-name>
+  	<display-name>CreatePerformanceTableObject</display-name>
+  	<description></description>
+  	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreatePerformanceTableObject</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>Accueil</servlet-name>
   	<url-pattern>/Accueil</url-pattern>
@@ -33,5 +39,9 @@
   <servlet-mapping>
   	<servlet-name>CreateAlternativeObject</servlet-name>
   	<url-pattern>/CreateAlternativeObject</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CreatePerformanceTableObject</servlet-name>
+  	<url-pattern>/CreatePerformanceTableObject</url-pattern>
   </servlet-mapping>
 </web-app>

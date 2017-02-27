@@ -8,9 +8,12 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
+    <p>Votre alternative : </p> 
+    <p><strong> <%=request.getAttribute("result")%> </strong></p> 
+    <p>a été créee</p>
     <form name="form1" id="formulairedecontact" method="post" action="CreateAlternativeObject">	
         <label>
-		<span>Alternative :</span>
+		<span>Create an other alternative :</span>
         <input type="text" placeholder="Tapez votre alternative" name="alternative" id="alternative">
         </label>
         		

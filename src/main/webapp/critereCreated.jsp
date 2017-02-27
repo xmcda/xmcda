@@ -9,8 +9,11 @@
 <div class="wrapper">  
     <div id="notreformulaire">
     <form name="form1" id="formulairedecontact" method="post" action="CreateCritereObject">	
+    	<p>Votre Critere : </p> 
+	    <p><strong> <%=request.getAttribute("result")%> </strong></p> 
+	    <p>a été crée</p>
         <label>
-		<span>Critère :</span>    
+        <span>Create an other critère </span> 	   
 		<input type="text" placeholder="Tapez votre critère" name="critere" id="critere">
         </label>
         <label>
