@@ -130,7 +130,8 @@ public class CreateCritereObject extends HttpServlet {
 		}
 		String result = writer.toString(); 
 		
-		request.setAttribute("result", result);
+		request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
+		//request.setAttribute("result", result);
 		request.getServletContext().getRequestDispatcher("/critereCreated.jsp").forward(request, response);
 
 	}

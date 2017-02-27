@@ -8,9 +8,13 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <form name="form1" id="formulairedecontact" method="post" action="CreatePerformanceTableObject">	
+    	<p>Votre PerformanceTable catégorie : </p> 
+	    <p><strong> <%=request.getAttribute("result")%> </strong></p> 
+	    <p>a été crée</p>	
+	<form name="form1" id="formulairedecontact" method="post" action="CreatePerformanceTableObject">	
         <label>
-		<span>PerformanceTable :
+        <span>Create an other performanceTable :</span>
+		<span>
 			<select name="mesurementOrCat">
 				<option name="">Choisir</option>
 				<option>Mesurement</option>

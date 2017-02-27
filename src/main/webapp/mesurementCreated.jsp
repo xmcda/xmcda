@@ -8,16 +8,25 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <p>Votre mesurement : <strong> <%=request.getAttribute("result")%> </strong> a été créee</p>
-    <form name="form1" id="formulairedecontact" method="post" action="CreateAlternativeObject">	
-        <label>
-		<span>Create an other alternative :</span>
-        <input type="text" placeholder="Tapez votre alternative" name="alternative" id="alternative">
-        </label>
-        		
-		<input class="sendButton" type="submit" name="Submit" value="Ajouter alternative">
-		<span><a href="index.jsp">Retour</a></span>
-	</form>
+    	<p>Votre PerformanceTable mesurement : </p> 
+	    <p><strong> <%=request.getAttribute("result")%> </strong></p> 
+	    <p>a été crée</p>    
+		<form name="form1" id="formulairedecontact" method="post" action="CreatePerformanceTableObject">	
+	        <label>
+	        <span>Create an other performanceTable :</span>
+			<span>
+				<select name="mesurementOrCat">
+					<option name="">Choisir</option>
+					<option>Mesurement</option>
+					<option>Categorie</option>
+				</select>
+			</span>
+	        <input type="tel" placeholder="Entrez votre utilité (entier)" name="utilite" id="utilite">
+	        </label>
+	        		
+			<input class="sendButton" type="submit" name="Submit" value="Ajouter objets">
+			<span><a href="index.jsp">Retour</a></span>
+		</form>
 	</div>
    </div>	
 </body>
