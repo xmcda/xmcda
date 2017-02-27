@@ -1,4 +1,4 @@
-package services;
+package io.github.oliviercailloux.y2016.xmcda;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -29,11 +29,11 @@ public class InstanciationXM {
 	         
 
 	         Attr att1 = doc.createAttribute("targetNamespace");
-	         att1.setValue("ressources/data");
+	         att1.setValue("src/main/webapp/fileRessources/data");
 	         xsschema.setAttributeNode(att1);
 
 	         Attr att2 = doc.createAttribute("xmlns:xac");
-	         att2.setValue("ressources/Data");
+	         att2.setValue("src/main/webapp/fileRessources/Data");
 	         xsschema.setAttributeNode(att2);
 
 	         Attr att3 = doc.createAttribute("elementFormDefault");
