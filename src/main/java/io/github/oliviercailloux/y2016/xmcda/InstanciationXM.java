@@ -17,10 +17,8 @@ public class InstanciationXM {
 
 	public static void buildeXMInstance() throws ParserConfigurationException{
 		 try {
-	         DocumentBuilderFactory dbFactory =
-	         DocumentBuilderFactory.newInstance();
-	         DocumentBuilder dBuilder = 
-	         dbFactory.newDocumentBuilder();
+	         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+	         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	         Document doc = dBuilder.newDocument();
 	         // schema
 	         Element xsschema = doc.createElement("xs:schema");
@@ -48,11 +46,11 @@ public class InstanciationXM {
 	         
 	         // setting attribute to import
 	         Attr impattr1 = doc.createAttribute("namespace");
-	         impattr1.setValue("ressources/xsd");
+	         impattr1.setValue("src/main/webapp/fileRessources/xsd");
 	         importus.setAttributeNode(impattr1);
 	         
 	         Attr impattr2 = doc.createAttribute("namespace");
-	         impattr2.setValue("ressources/xmcda-modular.xsd");
+	         impattr2.setValue("src/main/webapp/fileRessources/xmcda-modular.xsd");
 	         importus.setAttributeNode(impattr2);
 	         
 	         
@@ -89,15 +87,12 @@ public class InstanciationXM {
 	         // write the content into xml file
 	         TransformerFactory transformerFactory =
 	         TransformerFactory.newInstance();
-	         Transformer transformer =
-	         transformerFactory.newTransformer();
+	         Transformer transformer = transformerFactory.newTransformer();
 	         DOMSource source = new DOMSource(doc);
-	         StreamResult result =
-	         new StreamResult(new File("donnee.xsd"));
+	         StreamResult result = new StreamResult(new File("donnee.xsd"));
 	         transformer.transform(source, result);
 	         // Output to console for testing
-	         StreamResult consoleResult =
-	         new StreamResult(System.out);
+	         StreamResult consoleResult = new StreamResult(System.out);
 	         transformer.transform(source, consoleResult);
 	      } catch (Exception e) {
 	         e.printStackTrace();
