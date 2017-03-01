@@ -8,7 +8,7 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <form name="form1" id="formulairedecontact" method="post" action="CreateCritereObject">	
+    <form name="form1" id="formulairedecontact" method="GET" action="/CreateCritereObject">	
         <label>
 		<span>Critère :</span>    
 		<input type="text" placeholder="Tapez votre critère" name="critere" id="critere">
