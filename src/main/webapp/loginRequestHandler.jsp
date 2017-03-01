@@ -6,7 +6,7 @@
 String result=LoginVerification.loginCheck(loginBean);
  
 if(result.equals("true")){
-    session.setAttribute("email",loginBean.getEmail());
+    session.setAttribute("email",loginBean.getEmail()); // create the session with  this email
     response.sendRedirect("home.jsp");
 }
  

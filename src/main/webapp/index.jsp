@@ -14,7 +14,7 @@
  
         String status=request.getParameter("status");
         
-        if(status!=null){
+        if(status!=null){ // is status is null so it was the first time we enter 
             if(status.equals("false")){
                    out.print("Votre Login n est pa correct!");//                       
             }
