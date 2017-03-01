@@ -1,6 +1,5 @@
 package io.github.oliviercailloux.y2016.xmcda;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 
@@ -30,7 +29,6 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import io.github.xmcda_modular.y2016.jaxb.Alternative;
 import io.github.xmcda_modular.y2016.jaxb.Criterion;
 import io.github.xmcda_modular.y2016.jaxb.DirectedCriterion;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;

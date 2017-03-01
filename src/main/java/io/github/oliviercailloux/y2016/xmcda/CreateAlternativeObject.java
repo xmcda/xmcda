@@ -1,11 +1,6 @@
 package io.github.oliviercailloux.y2016.xmcda;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import javax.servlet.ServletException;
@@ -35,8 +30,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import io.github.xmcda_modular.y2016.jaxb.Alternative;
-import io.github.xmcda_modular.y2016.jaxb.Criterion;
-import io.github.xmcda_modular.y2016.jaxb.DirectedCriterion;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 
 /**
