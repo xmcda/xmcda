@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +42,7 @@ import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 /**
  * Servlet implementation class CreateObject
  */
+@WebServlet(urlPatterns = "/CreateAlternativeObject" )
 public class CreateAlternativeObject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -57,13 +59,7 @@ public class CreateAlternativeObject extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String alternative = request.getParameter("alternative");		
 		JAXBContext jc = null;
 		try {
@@ -138,7 +134,14 @@ public class CreateAlternativeObject extends HttpServlet {
 		request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
 		//request.setAttribute("result", result);
 		request.getServletContext().getRequestDispatcher("/alternativeCreated.jsp").forward(request, response);
-			
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+					
 		
 	}
 
