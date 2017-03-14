@@ -7,7 +7,7 @@
 	<h2>Hello World!</h2>
 	<form action="">
 		<label>Text : </label> 
-		<input type="text" name="url"> </br> </br>
+		<input type="text" name="url">
 		<input type="submit">
 	</form>
 </body>

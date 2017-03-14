@@ -23,5 +23,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/M2 Dauphine/jee/xmcda/xmcda/lib/c2dm.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
