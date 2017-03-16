@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -27,6 +30,9 @@ import javax.xml.ws.Dispatch;
 import javax.xml.ws.Service;
 import javax.xml.ws.Service.Mode;
 import javax.xml.ws.soap.SOAPBinding;
+
+import org.dom4j.DocumentException;
+
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -40,9 +46,17 @@ import com.google.common.io.Resources;
 /** @author Anis **/
 
 @SuppressWarnings("serial")
-//@WebServlet(urlPatterns = "/xmcdaScheme" )
+@WebServlet(urlPatterns = "/xmcdaScheme" )
 public class XM_scheme extends HttpServlet{
-	private static final String ENDPOINT_ADDRESS = "http://webservices.decision-deck.org/soap/rankAlternativesValues-RXMCDA.py";
+	private static String ENDPOINT_ADDRESS = "http://webservices.decision-deck.org/soap/";
+
+	public String getENDPOINT_ADDRESS() {
+		return ENDPOINT_ADDRESS;
+	}
+
+	public void setENDPOINT_ADDRESS(String eNDPOINT_ADDRESS) {
+		ENDPOINT_ADDRESS += eNDPOINT_ADDRESS;
+	}
 
 	private Transformer transformer;
 
@@ -84,23 +98,45 @@ public class XM_scheme extends HttpServlet{
 		destNode.appendChild(textNode);
 	}
 
-	 public  void doGet(HttpServletRequest request, HttpServletResponse response)
-	 throws ServletException, IOException  {
+	public  void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		List<InputStruct> inputs = new ArrayList<InputStruct>();
+		ParsingDescriptionUrl dsc = new ParsingDescriptionUrl();
+		URL url = new URL("http://www.decision-deck.org/ws/_downloads/description-wsDD48.xml");
+		try {
+			inputs = dsc.Parse(url, request);
+		} catch (DocumentException e1) {
+		}
+		HttpSession session = request.getSession();
+		String attName = "input";
+		int i = 1;
+		for (InputStruct input : inputs)
+		{
+			attName = "input";
+			attName += ""+i;
+	        String inputItem = input.name;
+	        session.setAttribute(attName, inputItem);
+	        i++;
+		}
+        request.getRequestDispatcher("invokeService.jsp").forward(request, response);
+        
+		try {
+			//ServiceInvoke(request, response);
+		} catch (Exception e) {
+		}
+	}
+	
+	 public  void ServiceInvoke(HttpServletRequest request, HttpServletResponse response)
+				throws Exception  
+	{
 	 
-	//public String submitAndRequest() throws Exception {
 		final Service svc = Service.create(new QName("ServiceNamespace", "ServiceLocalPart"));
 		final QName portQName = new QName("PortNamespace", "PortLocalPart");
 		svc.addPort(portQName, SOAPBinding.SOAP11HTTP_BINDING, ENDPOINT_ADDRESS);
 		final Dispatch<Source> dispatch = svc.createDispatch(portQName, Source.class, Mode.PAYLOAD);
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
-		DocumentBuilder builder = null;
-		try {
-			builder = factory.newDocumentBuilder();
-		} catch (ParserConfigurationException e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		}
+		final DocumentBuilder builder = factory.newDocumentBuilder();
 		final String ticket;
 		final Document doc = builder.newDocument();
 		final Element submit = doc.createElement("submitProblem");
@@ -117,19 +153,7 @@ public class XM_scheme extends HttpServlet{
 		sub1.setAttributeNodeNS(attrType1);
 		final Attr attrType2 = (Attr) attrType1.cloneNode(true);
 		sub2.setAttributeNodeNS(attrType2);
-		Node ret = null;
-		try {
-			ret = invoke(dispatch, new DOMSource(doc));
-		} catch (TransformerConfigurationException e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		} catch (TransformerException e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		}
+		Node ret = invoke(dispatch, new DOMSource(doc));
 		final NodeList directChildren = ret.getChildNodes();
 		final Node firstChild = directChildren.item(0);
 		final NodeList subChildren = firstChild.getChildNodes();
@@ -150,42 +174,7 @@ public class XM_scheme extends HttpServlet{
 		final Attr attrType = requestSolutionDoc.createAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:type");
 		attrType.setValue("xsd:string");
 		ticketEl.setAttributeNodeNS(attrType);
-		System.out.println("The Request :");
-		try {
-			System.out.println( asString(requestSolutionDoc) );
-		} catch (TransformerException | TransformerFactoryConfigurationError e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		Node solution = null;
-		try {
-			solution = invoke(dispatch, new DOMSource(requestSolutionDoc));
-		} catch (TransformerException | TransformerFactoryConfigurationError e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		System.out.println("The Response :");		
-		String result = null;
-		try {
-			result = asString(solution).replaceAll("&lt;", "<");
-		} catch (TransformerException | TransformerFactoryConfigurationError e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		result = result.replaceAll("&gt;", ">");
-		System.out.println( result );
-
-		final Node res = solution.getChildNodes().item(0).getChildNodes().item(0);
-		String output = null;
-		try {
-			output = asString(res).replaceAll("&lt;", "<");
-		} catch (TransformerException | TransformerFactoryConfigurationError e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		output = output.replaceAll("&gt;", ">");
-		//Files.write(output.getBytes(), new File("src/main/java/Resources/alternativesRanks.xml"));
-		//return output;
+		final Node solution = invoke(dispatch, new DOMSource(requestSolutionDoc));		
 	}
 	 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

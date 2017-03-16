@@ -4,7 +4,7 @@
 	<title>xmcda project</title>
 </head>
 <body>
-	<h2>Hello World!</h2>
+	<h2>Hello Worlhuuhiuhiuhuihiu!</h2>
 	<form action="">
 		<label>Text : </label> 
 		<input type="text" name="url">

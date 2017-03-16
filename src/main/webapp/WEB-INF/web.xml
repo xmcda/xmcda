@@ -10,18 +10,8 @@
   	<description></description>
   	<servlet-class>servlets.Accueil</servlet-class>
   </servlet>
-  <servlet>
-  	<servlet-name>xmcdaScheme</servlet-name>
-  	<display-name>xmcdaScheme</display-name>
-  	<description></description>
-  	<servlet-class>io.github.oliviercailloux.y2017.xmcda.XMscheme.XM_scheme</servlet-class>
-  </servlet>
   <servlet-mapping>
   	<servlet-name>Accueil</servlet-name>
   	<url-pattern>/Accueil</url-pattern>
-  </servlet-mapping>
-    <servlet-mapping>
-  	<servlet-name>xmcdaScheme</servlet-name>
-  	<url-pattern>/xmcdaScheme</url-pattern>
   </servlet-mapping>
 </web-app>
