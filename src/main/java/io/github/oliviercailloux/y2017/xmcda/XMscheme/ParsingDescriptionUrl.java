@@ -25,6 +25,7 @@ public class ParsingDescriptionUrl {
         xm.setENDPOINT_ADDRESS("-");
         xm.setENDPOINT_ADDRESS(program.attributeValue("provider"));
         xm.setENDPOINT_ADDRESS(".py");
+        // a-t-on besoin de cette partie ?
 		HttpSession session = request.getSession();
         session.setAttribute("serviceName", program.attributeValue("name"));
         session.setAttribute("providerName", program.attributeValue("provider"));
