@@ -52,20 +52,17 @@ public class CreateAlternativeObject extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String alternative = request.getParameter("alternative");		
 		JAXBContext jc = null;
 		try {
 			jc = JAXBContext.newInstance(Alternative.class);
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Marshaller marshaller = null;
 		try {
 			marshaller = jc.createMarshaller();
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		final ObjectFactory f = new ObjectFactory();
@@ -84,7 +81,6 @@ public class CreateAlternativeObject extends HttpServlet {
 		try {
 			docBuilder = docFactory.newDocumentBuilder();
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -97,7 +93,6 @@ public class CreateAlternativeObject extends HttpServlet {
 		try {
 			marshaller.marshal(altEl, rootElement);
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -106,7 +101,6 @@ public class CreateAlternativeObject extends HttpServlet {
 		try {
 			transformer = transformerFactory.newTransformer();
 		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -119,7 +113,6 @@ public class CreateAlternativeObject extends HttpServlet {
 		try {
 			transformer.transform(source, resultStream);
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String result = writer.toString(); 
