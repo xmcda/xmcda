@@ -85,7 +85,6 @@ public class XM_scheme extends HttpServlet{
 			throws TransformerException, TransformerFactoryConfigurationError, TransformerConfigurationException {
 		final Source ret = dispatch.invoke(src);
 		final DOMResult result = new DOMResult();
-		// fix the problem of encoded text
 		getTransformer().transform(ret, result);
 		final Node resultNode = result.getNode();
 		return resultNode;
@@ -102,7 +101,7 @@ public class XM_scheme extends HttpServlet{
 	{
 		List<InputStruct> inputs = new ArrayList<InputStruct>();
 		ParsingDescriptionUrl dsc = new ParsingDescriptionUrl();
-		URL url = new URL("http://www.decision-deck.org/ws/_downloads/description-wsDD48.xml");
+		URL url = new URL("http://www.decision-deck.org/ws/_downloads/description-wsDD168.xml");
 		try {
 			inputs = dsc.Parse(url, request);
 		} catch (DocumentException e1) {
@@ -121,15 +120,18 @@ public class XM_scheme extends HttpServlet{
         request.getRequestDispatcher("invokeService.jsp").forward(request, response);
         
 		try {
-			//ServiceInvoke(request, response);
+			ServiceInvoke(request, response, inputs);
 		} catch (Exception e) {
+		}
+		finally
+		{
+			inputs.clear();
 		}
 	}
 	
-	 public  void ServiceInvoke(HttpServletRequest request, HttpServletResponse response)
+	 public void ServiceInvoke(HttpServletRequest request, HttpServletResponse response, List<InputStruct> inputs)
 				throws Exception  
 	{
-	 
 		final Service svc = Service.create(new QName("ServiceNamespace", "ServiceLocalPart"));
 		final QName portQName = new QName("PortNamespace", "PortLocalPart");
 		svc.addPort(portQName, SOAPBinding.SOAP11HTTP_BINDING, ENDPOINT_ADDRESS);
@@ -141,18 +143,30 @@ public class XM_scheme extends HttpServlet{
 		final Document doc = builder.newDocument();
 		final Element submit = doc.createElement("submitProblem");
 		submit.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xsd", "http://www.w3.org/2001/XMLSchema");
-		final Element sub1 = doc.createElement("overallValues");
-		final Element sub2 = doc.createElement("alternatives");
+		List<Element> subs = new ArrayList<Element>();
+		for (int i = 0; i < inputs.size(); i++) {
+			//for now, we handle only the obligatory inputs
+			if(inputs.get(i).isoptional.equals("0"))
+			{
+				subs.add(doc.createElement(inputs.get(i).name));
+			}
+		}
 		doc.appendChild(submit);
-		submit.appendChild(sub1);
-		submit.appendChild(sub2);
-		setFileContentToNodeValue("overallValues.xml", sub1);
-		setFileContentToNodeValue("alternatives.xml", sub2);
+		for (int i = 0; i < subs.size(); i++) {
+			submit.appendChild(subs.get(i));
+		}
+		for (int i = 0; i < subs.size(); i++) {
+			String content = subs.get(i).getTagName();
+			content += ".xml";
+			setFileContentToNodeValue(content, subs.get(i));
+		}		
 		final Attr attrType1 = doc.createAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:type");
 		attrType1.setValue("xsd:string");
-		sub1.setAttributeNodeNS(attrType1);
-		final Attr attrType2 = (Attr) attrType1.cloneNode(true);
-		sub2.setAttributeNodeNS(attrType2);
+		subs.get(0).setAttributeNodeNS(attrType1);
+		for (int i = 1; i < subs.size(); i++) {
+			final Attr attrTypeTemp = (Attr) attrType1.cloneNode(true);
+			subs.get(i).setAttributeNodeNS(attrTypeTemp);
+		}
 		Node ret = invoke(dispatch, new DOMSource(doc));
 		final NodeList directChildren = ret.getChildNodes();
 		final Node firstChild = directChildren.item(0);
@@ -174,7 +188,11 @@ public class XM_scheme extends HttpServlet{
 		final Attr attrType = requestSolutionDoc.createAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:type");
 		attrType.setValue("xsd:string");
 		ticketEl.setAttributeNodeNS(attrType);
-		final Node solution = invoke(dispatch, new DOMSource(requestSolutionDoc));		
+		final Node solution = invoke(dispatch, new DOMSource(requestSolutionDoc));
+		System.out.println("");
+		System.out.println( "The solution :" );
+		System.out.println( asString(solution) );
+		System.out.println("");
 	}
 	 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
