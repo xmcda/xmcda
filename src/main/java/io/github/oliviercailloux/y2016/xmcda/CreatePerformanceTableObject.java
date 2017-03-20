@@ -52,7 +52,7 @@ public class CreatePerformanceTableObject extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-String mesurementOrCat = request.getParameter("mesurementOrCat");	
+		String mesurementOrCat = request.getParameter("mesurementOrCat");	
 		
 		if(mesurementOrCat.equals("Mesurement")){
 			String utilite = request.getParameter("utilite");
@@ -112,19 +112,16 @@ String mesurementOrCat = request.getParameter("mesurementOrCat");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			final DOMSource source = new DOMSource(doc);
 			// final StreamResult result = new StreamResult(new File("file.xml"));
-			//final StreamResult resultFile = new StreamResult(new File("file.xml")); added by me
 			StringWriter writer = new StringWriter();
 			final StreamResult resultStream = new StreamResult(writer);
 			try {
 				transformer.transform(source, resultStream);
 			} catch (TransformerException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String result = writer.toString(); 
 			
 			request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
-			//request.setAttribute("result", result);
 			request.getServletContext().getRequestDispatcher("/mesurementCreated.jsp").forward(request, response);
 
 		}else{
@@ -185,7 +182,6 @@ String mesurementOrCat = request.getParameter("mesurementOrCat");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			final DOMSource source = new DOMSource(doc);
 			// final StreamResult result = new StreamResult(new File("file.xml"));
-			//final StreamResult resultFile = new StreamResult(new File("file.xml")); added by me
 			StringWriter writer = new StringWriter();
 			final StreamResult resultStream = new StreamResult(writer);
 			try {
@@ -197,7 +193,6 @@ String mesurementOrCat = request.getParameter("mesurementOrCat");
 			String result = writer.toString(); 
 			
 			request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
-			//request.setAttribute("result", result);
 			request.getServletContext().getRequestDispatcher("/categorieCreated.jsp").forward(request, response);
 		
 		}
