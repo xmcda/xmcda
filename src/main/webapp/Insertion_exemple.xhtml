@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="default.css" />
+	<title>Création d'un livre</title>
+</h:head>
+<body>
+	<h:form>
+		<h2>Insertion d'un exemple_simple</h2>
+		<p>
+			<h:inputText id="userId" title="Entrez un id" value="#{gestionExempleSimple.id}">
+				<f:validateRequired></f:validateRequired>
+			</h:inputText>
+			
+			<h:inputText id="userLibelle" title="Entrez un libellé" value="#{gestionExempleSimple.libelle}">
+				<f:validateRequired></f:validateRequired>
+			</h:inputText>
+			<h:inputText id="userEmail" title="Entrez un email" value="#{gestionExempleSimple.email}">
+				<f:validateRequired></f:validateRequired>
+			</h:inputText>
+			<h:commandButton id="submit" value="Submit" action="ReponsePourExempleSimple" />
+		</p>
+		<h:message showSummary="true" showDetail="false" id="errors1" for="userId"
+		style="color: #d20005; font-family: ’New Century Schoolbook’, serif; font-style: oblique; text-decoration: overline"  />
+	</h:form>
+</body>
+</html>
