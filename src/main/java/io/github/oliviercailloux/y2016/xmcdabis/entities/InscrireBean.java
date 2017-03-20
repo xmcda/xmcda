@@ -24,6 +24,7 @@ public class InscrireBean implements Serializable {
 	// Méthode d'action appelée lors du clic sur le bouton du formulaire    // d'inscription  
 	public void inscrire() { 
 		initialiserDateInscription();  
+		System.out.println("je suis dans le inscrire bean");
 		utilisateurDao.creer( utilisateur );  
 		FacesMessage message = new FacesMessage( "Succès de l'inscription !" );   
 		FacesContext.getCurrentInstance().addMessage( null, message );  

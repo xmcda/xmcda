@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html">
+      <!--  xmlns:p="http://primefaces.org/ui"> -->
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -18,9 +18,9 @@
 			<legend>Inscription</legend>
 			<h:outputLabel for="email">Adresse email <span class="requis">*</span>
 			</h:outputLabel>
-			<p:inputText id="email" requiredMessage="#{msg['inscription.email']}"  value="#{inscrireBean.utilisateur.email}" required="true" size="20" maxlength="60" >
+			<h:inputText id="email" requiredMessage="#{msg['inscription.email']}"  value="#{inscrireBean.utilisateur.email}" required="true" size="20" maxlength="60" >
 			 <f:ajax event="blur" render="emailMessage" /> 
-			 </p:inputText>
+			 </h:inputText>
 			<h:message id="emailMessage" for="email" errorClass="erreur" />
 			<br />
 			<h:outputLabel for="motdepasse">Mot de passe <span class="requis">*</span>

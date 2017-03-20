@@ -1,10 +1,283 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Xmcda : Paris Dauphine</title>
+		<meta name="description" content="Blueprint: Responsive Full Width Tabs" />
+		<meta name="keywords" content="responsive tabs, full width tabs, template, blueprint" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script src="js/simuler.js"></script>
+        <script src="js/cbpFWTabs.js"></script>
+        
+		<!--[if IE]>
+  		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container">
+			<header class="clearfix">
+				<span>xmcda <span class="bp-icon bp-icon-about" data-content="Xmcda développer par la Team Xmcda M2-IF pour la matière Conception agile d'appli Web en java"></span></span>
+				<h1><img src="img/dauphine.png" alt="Dauphine" width="90px" />Xmcda </h1>
+				<nav >
+				<a href="index.html" class="" data-info="LogOut"><span>LogOut</span></a>
+					<a href="inscriptionJSF.xhtml" class="bp-icon bp-icon-prev" data-info="Inscription"><span>Inscription</span></a>
+					<a href="login.xhtml" class="bp-icon bp-icon-next" data-info="Login"><span>LogIn</span></a>
+					<a id ="lien" href="index.html" class="bp-icon bp-icon-drop" data-info="Accueil"><span>Acueil</span></a>
+					
+				</nav>
+			</header>	
+			<div id="tabs" class="tabs">
+				<nav>
+					<ul>
+						<li><a href="#section-1" class="icon-shop"><span>#####Ws1</span></a></li>
+						<li><a href="#section-2" class="icon-cup"><span>#####Ws1</span></a></li>
+						<li><a href="#section-3" class="icon-food"><span>#####Ws1</span></a></li>
+						<li><a href="#section-4" class="icon-truck"><span>#####Ws1</span></a></li>
+                        <li><a href="#section-5" class="icon-lab"><span>#####Ws1</span></a></li>
+                        <li><a href="#section-6" class="icon-lab"><span>#####Ws1</span></a></li>
+                        <li><a href="#section-7" class="icon-lab"><span>#####Ws1</span></a></li>
+                        <li><a href="#section-8" class="icon-lab"><span>#####Ws1</span></a></li>
+					</ul>
+				</nav>
+				<div class="content">
+					<section id="section-1">
+						<div class="mediabox-b">
+       <!--  <table>
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Valeur</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    Prix initial
+                </td>
+                <td>
+                    <input id = "St0" value="100" type="number"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Strike
+                </td>
+                <td>
+                    <input id = "K" value="110" type="number"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Barrière
+                </td>
+                <td>
+                    <input id="H" value="110" type="number"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Taux d'interet (%)
+                </td>
+                <td>
+                    <input id="r" value="6" type="number"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Dividendes (%)
+                </td>
+                <td>
+                    <input id ="D" value="1" type="number"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Volatilité (%)
+                </td>
+                <td>
+                    <input id ="Sigma" value="20" type="number"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nombre de simulations
+                </td>
+                <td>
+                    <input id ="M" value="10000" type="number"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Durée
+                </td>
+                <td>
+                    <input id = "T" value="10" type="number"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nombre de pas
+                </td>
+                <td>
+                    <input id="N" value="10" type="number"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Nominal
+                </td>
+                <td>
+                    <input id="Nominal" value="5" type="number"/>
+                </td>
+            </tr>
+                <tr style="border-top : 2px solid white;">
+                <td colspan="2" style="text-align:center">
+                    <button id="simuler" style ="border : 1px solid white ;background:white; padding-right:25px;padding-left:25px; padding-top:5px; padding-bottom:5px;" >Simuler</button>
+                </td>
+                </tr>
+            </tbody>
+            
+        </table> 
+
+            
+
+
+                            
+						</div>
+						<div class="mediabox-b">
+							<img src="img/02.png" alt="img02" />
+							<h3>Call</h3>
+							<p>Le call ou l'option d'achat est une option contractuelle d'achat sur un instrument financier.</p>
+
+                            <p>C'est un contrat qui permet à son souscripteur d'acquérir l'instrument concerné, appelé alors sous-jacent, à un prix fixé à l'avance (prix d'exercice, aussi appelé strike) et à une date déterminée appelée date de maturité du call.</p>
+                            
+						</div>
+						<div class="mediabox-b">
+							<img src="img/03.png" alt="img03" />
+							<h3>Put</h3>
+							<p>Le put ou l'option de vente est une option contractuelle de vente par laquelle deux parties s'accordent pour échanger un actif (appelé sous-jacent) à un prix fixé (appelé prix d'exercice ou strike) à une date prédéterminée (dite date de maturité).</p>
+                            
+						</div>
+                       
+					</section>
+					<section id="section-2">
+						<div class="mediabox">
+							<img src="img/02.png" alt="img05" />
+							<h3>Call</h3>
+							<p>On parle de « call européen » si le souscripteur peut exercer son droit uniquement à la date de maturité</p>
+                            <p id ="PCallEuro"></p>
+						</div>
+						<div class="mediabox">
+							<img src="img/03.png" alt="img06" />
+							<h3>Put</h3>
+							<p>On parle de « put européen » si le souscripteur peut exercer son droit uniquement à la date de maturité</p>
+                            <p id ="PPutEuro"></p>
+						</div>
+					</section>
+					<section id="section-3">
+						<div class="mediabox">
+							<img src="img/02.png" alt="img02" />
+							<h3>Call</h3>
+							<p>On parle de « call asiatique » si le souscripteur peut exercer son droit à la date de maturité en fonction de la moyenne des cours du sous-jacent.</p>
+                            <p id ="PCallAsia"></p>
+						</div>
+                        
+						<div class="mediabox">
+							<img src="img/03.png" alt="img06" />
+							<h3>Put</h3>
+							<p>On parle de « put asiatique » si le souscripteur peut exercer son droit à la date de maturité en fonction de la moyenne des cours du sous-jacent.</p>
+                            <p id ="PPutAsia"></p>
+						</div>
+					</section>
+                    <section id="section-4">
+						<div class="mediabox">
+							<img src="img/02.png" alt="img02" />
+							<h3>Call</h3>
+							<p>On parle de « call américain » si le souscripteur peut exercer son droit à tout moment avant la date de maturité inclusivement.</p>
+                            <p id ="PCallAmeri"></p>
+						</div>
+						<div class="mediabox">
+							<img src="img/03.png" alt="img06" />
+							<h3>Put</h3>
+							<p>On parle de « put américain » si le souscripteur peut exercer son droit à tout moment avant la date de maturité inclusivement.</p>
+                            <p id ="PPutAmeri"></p>
+						</div>
+					</section>
+					<section id="section-5">
+						<div class="mediabox">
+							<img src="img/02.png" alt="img03" />
+							<h3>Call</h3>
+							<p>Un call Up&In (Up&Out) est une option d'achat qui s'active (se désactive) si le cours du sous-jacent passe au dessus d'une barrière fixée à l'avance durant la periode.</p>
+                            <p id ="PCallUpIn"></p>
+                            <p id ="PCallUpOut"></p>
+						</div>
+						<div class="mediabox">
+							<img src="img/03.png" alt="img01" />
+							<h3>Put</h3>
+							<p>Un put Up&In (Up&Out) est une option de vente qui s'active (se désactive) si le cours du sous-jacent passe au dessus d'une barrière fixée à l'avance durant la periode.</p>
+                            <p id ="PPutUpIn"></p>
+                            <p id ="PPutUpOut"></p>
+						</div>
+					</section>
+                    <section id="section-6">
+						<div class="mediabox">
+							<img src="img/02.png" alt="img03" />
+							<h3>Call</h3>
+							<p>Un call Down&In (Down&Out) est une option d'achat qui s'active (se désactive) si le cours du sous-jacent passe en dessous d'une barrière fixée à l'avance durant la periode.</p>
+                            <p id ="PCallDownIn"></p>
+                            <p id ="PCallDownOut"></p>
+						</div>
+						<div class="mediabox">
+							<img src="img/03.png" alt="img01" />
+							<h3>Put</h3>
+							<p>Un put Down&In (Down&Out) est une option de vente qui s'active (se désactive) si le cours du sous-jacent passe en dessous d'une barrière fixée à l'avance durant la periode.</p>
+                            <p id ="PPutDownIn"></p>
+                            <p id ="PPutDownOut"></p>
+						</div>
+					</section>
+                    <section id="section-7">
+						<div class="mediabox">
+							<img src="img/02.png" alt="img02" />
+							<h3>Call</h3>
+							<p>Call binaire description</p>
+                            <p id ="PCallBinaire"></p>
+						</div>
+						<div class="mediabox">
+							<img src="img/03.png" alt="img06" />
+							<h3>Put</h3>
+							<p>Put binaire description</p>
+                            <p id ="PPutBinaire"></p>
+						</div>
+					</section>
+                    <section id="section-8">
+						<div class="mediabox">
+							<img src="img/02.png" alt="img02" />
+							<h3>Call</h3>
+							<p>Call Lookback description</p>
+                            <p id ="PCallLookback"></p>
+                            <p id ="PCallLookbackStrike"></p>
+						</div>
+						<div class="mediabox">
+							<img src="img/03.png" alt="img06" />
+							<h3>Put</h3>
+							<p>Put Lookback description</p>
+                            <p id ="PPutLookback"></p>
+                            <p id ="PPutLookbackStrike"></p>
+						</div>
+					</section>-->
+				</div><!-- /content -->
+			</div><!-- /tabs -->
+			<p class="info">Université <a href="http://www.dauphine.fr">Paris-Dauphine</a></p>
+		</div>
+		<script>
+			new CBPFWTabs( document.getElementById( 'tabs' ) );
+		</script>
+        
+	</body>
 </html>
