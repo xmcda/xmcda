@@ -85,8 +85,7 @@ public class InstanciationXM {
 	         element2.setAttributeNode(attr3);
 	
 	         // write the content into xml file
-	         TransformerFactory transformerFactory =
-	         TransformerFactory.newInstance();
+	         TransformerFactory transformerFactory = TransformerFactory.newInstance();
 	         Transformer transformer = transformerFactory.newTransformer();
 	         DOMSource source = new DOMSource(doc);
 	         StreamResult result = new StreamResult(new File("donnee.xsd"));
