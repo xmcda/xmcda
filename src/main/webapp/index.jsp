@@ -41,9 +41,11 @@
 		   <br>
 		   <br>
 			<div class="row">
-                <div class="col-lg-6 v-center">
-                    
+                <div class="col-lg-12 v-center">
+                   
 					<form class="form-inline">
+					
+					  <div class="col-lg-6">
 						  <h2>Les fichiers obligatoires</h2>
 						  <label for="obj1">Criteria : </label>
 						  <div class="form-group">
@@ -56,20 +58,31 @@
 						  <div class="form-group">
 							<input type="file" id="obj2" class="btn btn-primary btn-xs">
 						  </div>
+					  </div>
+					  
+						   <div class="col-lg-6">
 						  <h2>Les fichiers optionnels</h2>
 						  <label for="obj1">PerformanceTable : </label>
 						  <div class="form-group">
 							<input type="file" id="obj1" class="btn btn-primary btn-xs">
 						  </div>
-						  <br>
-						  <br>
-						  <div>
-								<button class="btn btn-primary" type="button">Invoquer</button>
+						  
+						  </div>
+						 
+						   <div class="col-lg-12 text-center">
+							<br>
+						 
+						  <button class="btn btn-primary" type="button">Invoquer</button>
 						  </div>
 					</form>
                 </div>
-				<div class="col-lg-6">
+				</div>
+				 <br>
+						 <br>
+				<div class="row">
+				<div class="col-lg-6 col-lg-offset-3">
                         <div class="panel panel-primary">
+						
                             <div class="panel-heading">
                                 <h3 class="panel-title">Reponse</h3>
                             </div>
@@ -82,7 +95,7 @@
         <artist>Bob Dylan</artist>
         <country>USA</country>
         <country>Columbia</country>
-        <price>10.90</price>
+        <price>11.90</price>
         <year>1985</year>
     </cd>
 </catalog></textarea>
