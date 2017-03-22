@@ -184,11 +184,12 @@ public class CreateAlternativeObject extends HttpServlet {
 		/** Inelegant. (Impl. dependent.) */
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		final DOMSource source = new DOMSource(doc);
-		// final StreamResult result = new StreamResult(new File("file.xml"));
+		final StreamResult result = new StreamResult(new File("alternative.xml"));
 		StringWriter writer = new StringWriter();
 		final StreamResult resultStream = new StreamResult(writer);
 		try {
 			transformer.transform(source, resultStream);
+			transformer.transform(source, result);
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
