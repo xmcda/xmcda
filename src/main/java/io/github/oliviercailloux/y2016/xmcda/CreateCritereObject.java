@@ -190,12 +190,15 @@ public class CreateCritereObject extends HttpServlet {
 		/** Inelegant. (Impl. dependent.) */
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		final DOMSource source = new DOMSource(doc);
-		// final StreamResult result = new StreamResult(new File("file.xml"));
+		//to a file
+		final StreamResult result = new StreamResult(new File("criteria.xml"));
 		//final StreamResult resultFile = new StreamResult(new File("file.xml")); added by me
 		StringWriter writer = new StringWriter();
 		final StreamResult resultStream = new StreamResult(writer);
 		try {
 			transformer.transform(source, resultStream);
+			//to a file
+			transformer.transform(source, result);
 		} catch (TransformerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
