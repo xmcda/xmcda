@@ -7,12 +7,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -31,8 +30,6 @@ import javax.xml.ws.Service;
 import javax.xml.ws.Service.Mode;
 import javax.xml.ws.soap.SOAPBinding;
 
-import org.dom4j.DocumentException;
-
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -44,17 +41,19 @@ import com.google.common.io.Resources;
 
 
 /** @author Anis **/
-
-@SuppressWarnings("serial")
-@WebServlet(urlPatterns = "/xmcdaScheme" )
-public class XM_scheme extends HttpServlet{
+@RequestScoped
+public class XM_scheme{
 	private static String ENDPOINT_ADDRESS = "http://webservices.decision-deck.org/soap/";
 
-	public String getENDPOINT_ADDRESS() {
+	private static List<InputStruct> inputs = new ArrayList<InputStruct>();
+	private static String webServiceName;
+	private static String webServiceProvider;
+	
+	public static String getENDPOINT_ADDRESS() {
 		return ENDPOINT_ADDRESS;
 	}
 
-	public void setENDPOINT_ADDRESS(String eNDPOINT_ADDRESS) {
+	public static void setENDPOINT_ADDRESS(String eNDPOINT_ADDRESS) {
 		ENDPOINT_ADDRESS += eNDPOINT_ADDRESS;
 	}
 
@@ -96,45 +95,18 @@ public class XM_scheme extends HttpServlet{
 		final Text textNode = destNode.getOwnerDocument().createTextNode(resStr);
 		destNode.appendChild(textNode);
 	}
-
-	public  void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		List<InputStruct> inputs = new ArrayList<InputStruct>();
-		ParsingDescriptionUrl dsc = new ParsingDescriptionUrl();
-		URL url = new URL("http://www.decision-deck.org/ws/_downloads/description-wsDD168.xml");
-		try {
-			inputs = dsc.Parse(url, request);
-		} catch (DocumentException e1) {
-		}
-		HttpSession session = request.getSession();
-		String attName = "input";
-		int i = 1;
-		for (InputStruct input : inputs)
-		{
-			attName = "input";
-			attName += ""+i;
-	        String inputItem = input.name;
-	        session.setAttribute(attName, inputItem);
-	        i++;
-		}
-        request.getRequestDispatcher("invokeService.jsp").forward(request, response);
-        
-		try {
-			ServiceInvoke(request, response, inputs);
-		} catch (Exception e) {
-		}
-		finally
-		{
-			inputs.clear();
-		}
-	}
 	
-	 public void ServiceInvoke(HttpServletRequest request, HttpServletResponse response, List<InputStruct> inputs)
+	 public void ServiceInvoke(HttpServletRequest request, HttpServletResponse response)
 				throws Exception  
 	{
 		final Service svc = Service.create(new QName("ServiceNamespace", "ServiceLocalPart"));
 		final QName portQName = new QName("PortNamespace", "PortLocalPart");
+		setENDPOINT_ADDRESS(webServiceName);
+		setENDPOINT_ADDRESS("-");
+		setENDPOINT_ADDRESS(webServiceProvider);
+		setENDPOINT_ADDRESS(".py");
 		svc.addPort(portQName, SOAPBinding.SOAP11HTTP_BINDING, ENDPOINT_ADDRESS);
+		ENDPOINT_ADDRESS = "http://webservices.decision-deck.org/soap/";
 		final Dispatch<Source> dispatch = svc.createDispatch(portQName, Source.class, Mode.PAYLOAD);
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
@@ -144,11 +116,11 @@ public class XM_scheme extends HttpServlet{
 		final Element submit = doc.createElement("submitProblem");
 		submit.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xsd", "http://www.w3.org/2001/XMLSchema");
 		List<Element> subs = new ArrayList<Element>();
-		for (int i = 0; i < inputs.size(); i++) {
+		for (int i = 0; i < getInputs().size(); i++) {
 			//for now, we handle only the obligatory inputs
-			if(inputs.get(i).isoptional.equals("0"))
+			if(getInputs().get(i).isoptional.equals("0"))
 			{
-				subs.add(doc.createElement(inputs.get(i).name));
+				subs.add(doc.createElement(getInputs().get(i).name));
 			}
 		}
 		doc.appendChild(submit);
@@ -193,9 +165,34 @@ public class XM_scheme extends HttpServlet{
 		System.out.println( "The solution :" );
 		System.out.println( asString(solution) );
 		System.out.println("");
+		request.setAttribute("result", asString(solution));
 	}
 	 
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			//TODO			
+		}
+
+		public static List<InputStruct> getInputs() {
+			return inputs;
+		}
+
+		public static void setInputs(List<InputStruct> inputs) {
+			XM_scheme.inputs = inputs;
+		}
+
+		public static String getWebServiceName() {
+			return webServiceName;
+		}
+
+		public static void setWebServiceName(String webServiceName) {
+			XM_scheme.webServiceName = webServiceName;
+		}
+
+		public static String getWebServiceProvider() {
+			return webServiceProvider;
+		}
+
+		public static void setWebServiceProvider(String webServiceProvider) {
+			XM_scheme.webServiceProvider = webServiceProvider;
 		}
 }

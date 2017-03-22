@@ -7,7 +7,10 @@ import io.github.oliviercailloux.y2017.xmcda.XMscheme.XM_scheme;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Parsing")
 public class ServletParsingXM extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@Inject ParsingDescriptionUrl parseur;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -85,24 +89,23 @@ public class ServletParsingXM extends HttpServlet {
 		try {
 			String ul = request.getParameter("URL");
 			URL url=new URL(ul);
-			ParsingDescriptionUrl parseur = new ParsingDescriptionUrl();
+			List<String> obligatoire = new ArrayList<String>();
+			
+			List<String> facultatif = new ArrayList<String>();
+			// replace with CDI context
+			//ParsingDescriptionUrl parseur = new ParsingDescriptionUrl();
 			List<InputStruct> inputs = parseur.Parse(url, request);
-			response.setContentType("text/html");
-			PrintWriter printWriter = response.getWriter();
-			printWriter.println("<h2>Les fichiers obligatoires" + "</h2>");
 			for (int i=0;i<inputs.size();i++){
 				if(inputs.get(i).isoptional.equals("0")){
-					printWriter.println("<h3>"+ inputs.get(i).name+"</h3>");
+					obligatoire.add(inputs.get(i).name);
+				} else{
+					facultatif.add(inputs.get(i).name);
 				}
 			}
-			printWriter.println("<h2>Les fichiers optionnels"+ "</h2>");
-			for (int i=0;i<inputs.size();i++){
-				if(inputs.get(i).isoptional.equals("1")){
-					printWriter.println("<h3>"+ inputs.get(i).name+"</h3>");
-				}
-			}
-			XM_scheme.class.newInstance().ServiceInvoke(request, response, inputs);
-			printWriter.println("<h2>Service Web Invoked with success!</h2>");
+			request.setAttribute("obligatoires", obligatoire);
+			request.setAttribute("facultatifs", facultatif);
+			request.getRequestDispatcher("/parse.jsp").forward(request, response);
+			
 		} catch (Exception e) {
 
 			e.printStackTrace();
