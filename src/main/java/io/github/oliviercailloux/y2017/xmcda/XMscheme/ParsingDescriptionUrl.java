@@ -29,10 +29,10 @@ public class ParsingDescriptionUrl {
         for ( Iterator<?> i = parameters.elementIterator( "input" ); i.hasNext(); ) {
             Element input = (Element) i.next();
         	InputStruct inputDummy = new InputStruct();
-            inputDummy.id = input.attributeValue("id");
-            inputDummy.name = input.attributeValue("name");
-            inputDummy.displayName = input.attributeValue("displayName");
-            inputDummy.isoptional = input.attributeValue("isoptional");
+            inputDummy.setId(input.attributeValue("id"));
+            inputDummy.setName(input.attributeValue("name"));
+            inputDummy.setDisplayName(input.attributeValue("displayName"));
+            inputDummy.setIsoptional(input.attributeValue("isoptional"));
             inputs.add(inputDummy);
         }
         XM_scheme.getInputs().clear();

@@ -2,7 +2,6 @@ package io.github.oliviercailloux.y2016.xmcda.servlets;
 
 import io.github.oliviercailloux.y2017.xmcda.XMscheme.InputStruct;
 import io.github.oliviercailloux.y2017.xmcda.XMscheme.ParsingDescriptionUrl;
-import io.github.oliviercailloux.y2017.xmcda.XMscheme.XM_scheme;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -68,7 +67,7 @@ public class ServletParsingXM extends HttpServlet {
 			printWriter.println("La taille de la liste est "+ inputs.size());
 			printWriter.println("</h2>");
 			printWriter.println("<h2>");
-			printWriter.println("La taille de la liste est "+ inputs.get(1).name);
+			printWriter.println("La taille de la liste est "+ inputs.get(1).getName());
 			printWriter.println("</h2>");
 		} catch (Exception e2) {
 
@@ -96,10 +95,10 @@ public class ServletParsingXM extends HttpServlet {
 			//ParsingDescriptionUrl parseur = new ParsingDescriptionUrl();
 			List<InputStruct> inputs = parseur.Parse(url, request);
 			for (int i=0;i<inputs.size();i++){
-				if(inputs.get(i).isoptional.equals("0")){
-					obligatoire.add(inputs.get(i).name);
+				if(inputs.get(i).getIsoptional().equals("0")){
+					obligatoire.add(inputs.get(i).getName());
 				} else{
-					facultatif.add(inputs.get(i).name);
+					facultatif.add(inputs.get(i).getName());
 				}
 			}
 			request.setAttribute("obligatoires", obligatoire);

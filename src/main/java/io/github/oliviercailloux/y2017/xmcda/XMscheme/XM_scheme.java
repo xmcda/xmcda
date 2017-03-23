@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.y2017.xmcda.XMscheme;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
@@ -8,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.namespace.QName;
@@ -41,6 +40,7 @@ import com.google.common.io.Resources;
 
 
 /** @author Anis **/
+
 @RequestScoped
 public class XM_scheme{
 	private static String ENDPOINT_ADDRESS = "http://webservices.decision-deck.org/soap/";
@@ -55,6 +55,30 @@ public class XM_scheme{
 
 	public static void setENDPOINT_ADDRESS(String eNDPOINT_ADDRESS) {
 		ENDPOINT_ADDRESS += eNDPOINT_ADDRESS;
+	}
+
+	public static List<InputStruct> getInputs() {
+		return inputs;
+	}
+
+	public static void setInputs(List<InputStruct> inputs) {
+		XM_scheme.inputs = inputs;
+	}
+
+	public static String getWebServiceName() {
+		return webServiceName;
+	}
+
+	public static void setWebServiceName(String webServiceName) {
+		XM_scheme.webServiceName = webServiceName;
+	}
+
+	public static String getWebServiceProvider() {
+		return webServiceProvider;
+	}
+
+	public static void setWebServiceProvider(String webServiceProvider) {
+		XM_scheme.webServiceProvider = webServiceProvider;
 	}
 
 	private Transformer transformer;
@@ -90,7 +114,8 @@ public class XM_scheme{
 	}
 
 	public void setFileContentToNodeValue(String sourceFile, Node destNode) throws IOException {
-		final URL resUrl = getClass().getResource(sourceFile);
+		//final URL resUrl = getClass().getResource(sourceFile);
+		final URL resUrl = new File(sourceFile).toURI().toURL();
 		final String resStr = Resources.toString(resUrl, StandardCharsets.UTF_8);
 		final Text textNode = destNode.getOwnerDocument().createTextNode(resStr);
 		destNode.appendChild(textNode);
@@ -118,20 +143,24 @@ public class XM_scheme{
 		List<Element> subs = new ArrayList<Element>();
 		for (int i = 0; i < getInputs().size(); i++) {
 			//for now, we handle only the obligatory inputs
-			if(getInputs().get(i).isoptional.equals("0"))
+			if(getInputs().get(i).getIsoptional().equals("0"))
 			{
-				subs.add(doc.createElement(getInputs().get(i).name));
+				subs.add(doc.createElement(getInputs().get(i).getName()));
 			}
 		}
 		doc.appendChild(submit);
 		for (int i = 0; i < subs.size(); i++) {
 			submit.appendChild(subs.get(i));
 		}
-		for (int i = 0; i < subs.size(); i++) {
-			String content = subs.get(i).getTagName();
-			content += ".xml";
-			setFileContentToNodeValue(content, subs.get(i));
-		}		
+//		for (int i = 0; i < subs.size(); i++) {
+//			String content = subs.get(i).getTagName();
+//			content += ".xml";
+//			setFileContentToNodeValue(content, subs.get(i));
+//		}
+		
+		setFileContentToNodeValue("C:/Users/Anis/Desktop/alternatives.xml", subs.get(0));
+		setFileContentToNodeValue("C:/Users/Anis/Desktop/overallValues.xml", subs.get(1));
+		
 		final Attr attrType1 = doc.createAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:type");
 		attrType1.setValue("xsd:string");
 		subs.get(0).setAttributeNodeNS(attrType1);
@@ -145,10 +174,6 @@ public class XM_scheme{
 		final NodeList subChildren = firstChild.getChildNodes();
 		final Node secondSubChild = subChildren.item(1);
 		ticket = secondSubChild.getFirstChild().getTextContent();
-		System.out.println("");
-		System.out.println( "The ticket :" );
-		System.out.println( ticket );
-		System.out.println("");
 		final Document requestSolutionDoc = builder.newDocument();
 		final Element requestSolution = requestSolutionDoc.createElement("requestSolution");
 		requestSolution.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xsd", "http://www.w3.org/2001/XMLSchema");
@@ -161,38 +186,6 @@ public class XM_scheme{
 		attrType.setValue("xsd:string");
 		ticketEl.setAttributeNodeNS(attrType);
 		final Node solution = invoke(dispatch, new DOMSource(requestSolutionDoc));
-		System.out.println("");
-		System.out.println( "The solution :" );
-		System.out.println( asString(solution) );
-		System.out.println("");
 		request.setAttribute("result", asString(solution));
 	}
-	 
-		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			//TODO			
-		}
-
-		public static List<InputStruct> getInputs() {
-			return inputs;
-		}
-
-		public static void setInputs(List<InputStruct> inputs) {
-			XM_scheme.inputs = inputs;
-		}
-
-		public static String getWebServiceName() {
-			return webServiceName;
-		}
-
-		public static void setWebServiceName(String webServiceName) {
-			XM_scheme.webServiceName = webServiceName;
-		}
-
-		public static String getWebServiceProvider() {
-			return webServiceProvider;
-		}
-
-		public static void setWebServiceProvider(String webServiceProvider) {
-			XM_scheme.webServiceProvider = webServiceProvider;
-		}
 }

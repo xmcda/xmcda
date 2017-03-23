@@ -11,7 +11,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     
-                    <li class="selected"><a href="signup.html"><i class="fa fa-cogs"></i> Invoquer web service</a></li>
+                    <li class="selected"><a href="index.jsp"><i class="fa fa-cogs"></i> Invoquer web service</a></li>
 					 
                     <li><a href="createObject.jsp"><i class="fa fa-file-code-o"></i> Créer des objets</a></li>          
                 </ul>

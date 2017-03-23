@@ -16,7 +16,7 @@
 	        <span>Create an other performanceTable :</span>
 			<span>
 				<select name="mesurementOrCat">
-					<option name="">Choisir</option>
+					<option>Choisir</option>
 					<option>Mesurement</option>
 					<option>Categorie</option>
 				</select>
