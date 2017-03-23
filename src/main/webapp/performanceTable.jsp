@@ -12,7 +12,7 @@
         <label>
 		<span>PerformanceTable :
 			<select name="mesurementOrCat">
-				<option name="">Choisir</option>
+				<option>Choisir</option>
 				<option>Mesurement</option>
 				<option>Categorie</option>
 			</select>

@@ -12,11 +12,9 @@
         <label>
 		<span><a href="alternative.jsp">Ajouter une alternative</a></span>
         </label>
-        	</br>
         <label>
 		<span><a href="critere.jsp">Ajouter une critère</a></span>
         </label>
-        	</br>
         <label>
 		<span><a href="performanceTable.jsp">Ajouter une performanceTable</a></span>
         </label>
