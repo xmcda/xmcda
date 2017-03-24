@@ -69,6 +69,7 @@ public class CreatePerformanceTableObject extends HttpServlet {
 		
 		if(mesurementOrCat.equals("Mesurement")){
 			String utilite = request.getParameter("utilite");
+			perfTable.insertPerformanceTable(mesurementOrCat, utilite);
 			JAXBContext jc = null;
 			try {
 				jc = JAXBContext.newInstance(Criterion.class);
@@ -139,6 +140,7 @@ public class CreatePerformanceTableObject extends HttpServlet {
 
 		}else{
 			String utilite = request.getParameter("utilite");
+			perfTable.insertPerformanceTable(mesurementOrCat, utilite);
 			JAXBContext jc = null;
 			try {
 				jc = JAXBContext.newInstance(Criterion.class);

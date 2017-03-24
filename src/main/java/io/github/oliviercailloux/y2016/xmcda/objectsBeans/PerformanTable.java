@@ -1,25 +1,41 @@
 package io.github.oliviercailloux.y2016.xmcda.objectsBeans;
 
 import javax.enterprise.context.RequestScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import io.github.oliviercailloux.y2016.xmcda.entities.PerformanceTable;
 
 @RequestScoped
 public class PerformanTable {
-	private String type;
-	private String utilite;
-	public PerformanTable() {
-		// TODO Auto-generated constructor stub
+	@PersistenceContext
+	private EntityManager em; 
+	
+	public void insertPerformanceTable(String type, String utilite){
+		PerformanceTable perf = new PerformanceTable(); 
+		
+		perf.setType(type);
+		perf.setUtilite(utilite);
+		
+		em.persist(perf);
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getUtilite() {
-		return utilite;
-	}
-	public void setUtilite(String utilite) {
-		this.utilite = utilite;
-	}
+	
+//	private String type;
+//	private String utilite;
+//	public PerformanTable() {
+//		// TODO Auto-generated constructor stub
+//	}
+//	public String getType() {
+//		return type;
+//	}
+//	public void setType(String type) {
+//		this.type = type;
+//	}
+//	public String getUtilite() {
+//		return utilite;
+//	}
+//	public void setUtilite(String utilite) {
+//		this.utilite = utilite;
+//	}
 
 }

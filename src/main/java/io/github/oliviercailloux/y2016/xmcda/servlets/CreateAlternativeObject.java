@@ -39,7 +39,8 @@ import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 @WebServlet(urlPatterns = "/CreateAlternativeObject" )
 public class CreateAlternativeObject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@Inject io.github.oliviercailloux.y2016.xmcda.objectsBeans.Alternative alter;
+	@Inject 
+	io.github.oliviercailloux.y2016.xmcda.objectsBeans.Alternative alter;
 	
 	
        
@@ -67,7 +68,8 @@ public class CreateAlternativeObject extends HttpServlet {
 	}
 	protected void createAlternative(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String alternative = request.getParameter("alternative");	
-		alter.setLibelle(alternative);
+//		alter.setLibelle(alternative);
+		alter.insertAlternative(alternative);
 		JAXBContext jc = null;
 		try {
 			jc = JAXBContext.newInstance(Alternative.class);

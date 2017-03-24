@@ -41,7 +41,8 @@ import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 @WebServlet(urlPatterns = "/CreateCritereObject")
 public class CreateCritereObject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    @Inject Criteria criter;   
+    @Inject Criteria criter; 
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -66,8 +67,9 @@ public class CreateCritereObject extends HttpServlet {
 	protected void createCriteria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String critere = request.getParameter("critere");		 
 		String pref = request.getParameter("preference");
-		criter.setPreference(pref);
-		criter.setLibelle(critere);
+//		criter.setPreference(pref);
+//		criter.setLibelle(critere);
+		criter.insertCriteria(critere, pref);
 		JAXBContext jc = null;
 		try {
 			jc = JAXBContext.newInstance(Criterion.class);
