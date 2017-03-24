@@ -11,7 +11,7 @@ public class Alternative {
 	
 	
 	public void insertAlternative(String libelle){
-		io.github.oliviercailloux.y2016.xmcda.entities.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entities.Alternative(); 
+		io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Alternative(); 
 		alt.setLibelle(libelle);
 		
 		try{
@@ -22,7 +22,7 @@ public class Alternative {
 		}
 	}
 	public void editAlternative(String libelle){
-		io.github.oliviercailloux.y2016.xmcda.entities.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entities.Alternative(); 
+		io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Alternative(); 
 		alt.setLibelle(libelle);
 		
 		try{

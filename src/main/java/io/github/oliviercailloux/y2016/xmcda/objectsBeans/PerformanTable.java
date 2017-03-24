@@ -4,7 +4,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import io.github.oliviercailloux.y2016.xmcda.entities.PerformanceTable;
+import io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Performancetable;
 
 @RequestScoped
 public class PerformanTable {
@@ -12,7 +12,7 @@ public class PerformanTable {
 	private EntityManager em; 
 	
 	public void insertPerformanceTable(String type, String utilite){
-		PerformanceTable perf = new PerformanceTable(); 		
+		Performancetable perf = new Performancetable(); 		
 		perf.setType(type);
 		perf.setUtilite(utilite);
 		
@@ -20,7 +20,7 @@ public class PerformanTable {
 		em.flush();
 	}
 	public void editPerformanceTable(String type, String utilite){
-		PerformanceTable perf = new PerformanceTable(); 
+		Performancetable perf = new Performancetable(); 
 		perf.setType(type);
 		perf.setUtilite(utilite);
 		
