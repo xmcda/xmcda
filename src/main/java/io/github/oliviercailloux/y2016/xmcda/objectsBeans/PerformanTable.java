@@ -17,6 +17,7 @@ public class PerformanTable {
 		perf.setUtilite(utilite);
 		
 		em.persist(perf);
+		em.flush();
 	}
 	public void editPerformanceTable(String type, String utilite){
 		PerformanceTable perf = new PerformanceTable(); 

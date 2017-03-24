@@ -15,6 +15,7 @@ public class Criteria {
 		crit.setPreference(preference);
 		
 		em.persist(crit);
+		em.flush();
 	}
 	public void editCriteria(String libelle, String preference){
 		io.github.oliviercailloux.y2016.xmcda.entities.Criteria crit = new io.github.oliviercailloux.y2016.xmcda.entities.Criteria();

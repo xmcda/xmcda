@@ -14,7 +14,12 @@ public class Alternative {
 		io.github.oliviercailloux.y2016.xmcda.entities.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entities.Alternative(); 
 		alt.setLibelle(libelle);
 		
-		em.persist(alt);
+		try{
+			em.persist(alt);
+			em.flush();
+		}catch(Exception e){
+			System.out.println("Error when persist object "+e.getMessage());
+		}
 	}
 	public void editAlternative(String libelle){
 		io.github.oliviercailloux.y2016.xmcda.entities.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entities.Alternative(); 
