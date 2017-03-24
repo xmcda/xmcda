@@ -16,6 +16,16 @@ public class Alternative {
 		
 		em.persist(alt);
 	}
+	public void editAlternative(String libelle){
+		io.github.oliviercailloux.y2016.xmcda.entities.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entities.Alternative(); 
+		alt.setLibelle(libelle);
+		
+		try{
+			em.merge(alt);
+		}catch(Exception e){
+			System.out.println("Error when merging object "+e.getMessage());
+		}
+	}
 	
 //    private int id;
 //	private String libelle;
@@ -34,7 +44,4 @@ public class Alternative {
 //	public void setLibelle(String libelle) {
 //		this.libelle = libelle;
 //	}
-	
-	
-
 }

@@ -16,6 +16,17 @@ public class Criteria {
 		
 		em.persist(crit);
 	}
+	public void editCriteria(String libelle, String preference){
+		io.github.oliviercailloux.y2016.xmcda.entities.Criteria crit = new io.github.oliviercailloux.y2016.xmcda.entities.Criteria();
+		crit.setLibelle(libelle);
+		crit.setPreference(preference);
+		
+		try{
+			em.merge(crit);
+		}catch(Exception e){
+			System.out.println("Error when merging object "+e.getMessage());
+		}
+	}
 	
 //    private int id;
 //	private String libelle;

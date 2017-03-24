@@ -12,12 +12,22 @@ public class PerformanTable {
 	private EntityManager em; 
 	
 	public void insertPerformanceTable(String type, String utilite){
-		PerformanceTable perf = new PerformanceTable(); 
-		
+		PerformanceTable perf = new PerformanceTable(); 		
 		perf.setType(type);
 		perf.setUtilite(utilite);
 		
 		em.persist(perf);
+	}
+	public void editPerformanceTable(String type, String utilite){
+		PerformanceTable perf = new PerformanceTable(); 
+		perf.setType(type);
+		perf.setUtilite(utilite);
+		
+		try{
+			em.merge(perf);
+		}catch(Exception e){
+			System.out.println("Error when merging object "+e.getMessage());
+		}		
 	}
 	
 //	private String type;
