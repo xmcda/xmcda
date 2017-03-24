@@ -30,46 +30,58 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import io.github.oliviercailloux.y2016.xmcda.beans.AlternativeBean;
 import io.github.xmcda_modular.y2016.jaxb.Alternative;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 
 /**
  * Servlet implementation class CreateObject
  */
-@WebServlet(urlPatterns = "/CreateAlternativeObject" )
+@WebServlet(urlPatterns = "/CreateAlternativeObject")
 public class CreateAlternativeObject extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-	@Inject 
-	io.github.oliviercailloux.y2016.xmcda.objectsBeans.Alternative alter;
-	
-	
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CreateAlternativeObject() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	@Inject
+	AlternativeBean alter;
+	// @EJB
+	// private io.github.oliviercailloux.y2016.xmcda.objectsBeans.Alternative
+	// alterEJB;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CreateAlternativeObject() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		createAlternative(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		createAlternative(request, response);
 	}
-	protected void createAlternative(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String alternative = request.getParameter("alternative");	
-//		alter.setLibelle(alternative);
+
+	protected void createAlternative(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String alternative = request.getParameter("alternative");
+		// alter.setLibelle(alternative);
 		alter.insertAlternative(alternative);
+		// alterEJB.insertAlternative(alternative);
 		JAXBContext jc = null;
 		try {
 			jc = JAXBContext.newInstance(Alternative.class);
@@ -132,12 +144,12 @@ public class CreateAlternativeObject extends HttpServlet {
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
-		String result = writer.toString(); 
-		
-		request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
-		//request.setAttribute("result", result);
-		request.getServletContext().getRequestDispatcher("/alternativeCreated.jsp").forward(request, response);	
-		
+		String result = writer.toString();
+
+		request.setAttribute("result", result.replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;"));
+		// request.setAttribute("result", result);
+		request.getServletContext().getRequestDispatcher("/alternativeCreated.jsp").forward(request, response);
+
 	}
 
 }

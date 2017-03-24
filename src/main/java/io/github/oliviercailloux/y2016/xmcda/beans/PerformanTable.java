@@ -1,10 +1,10 @@
-package io.github.oliviercailloux.y2016.xmcda.objectsBeans;
+package io.github.oliviercailloux.y2016.xmcda.beans;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Performancetable;
+import io.github.oliviercailloux.y2016.xmcda.entities.Performancetable;
 
 @RequestScoped
 public class PerformanTable {

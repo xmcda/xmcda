@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.y2016.xmcda.entitiesFromDB;
+package io.github.oliviercailloux.y2016.xmcda.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;

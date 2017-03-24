@@ -1,4 +1,4 @@
-package io.github.oliviercailloux.y2016.xmcda.objectsBeans;
+package io.github.oliviercailloux.y2016.xmcda.beans;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
@@ -10,7 +10,7 @@ public class Criteria {
 	private EntityManager em; 
 	
 	public void insertCriteria(String libelle, String preference){
-		io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Criteria crit = new io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Criteria();
+		io.github.oliviercailloux.y2016.xmcda.entities.Criteria crit = new io.github.oliviercailloux.y2016.xmcda.entities.Criteria();
 		crit.setLibelle(libelle);
 		crit.setPreference(preference);
 		
@@ -18,7 +18,7 @@ public class Criteria {
 		em.flush();
 	}
 	public void editCriteria(String libelle, String preference){
-		io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Criteria crit = new io.github.oliviercailloux.y2016.xmcda.entitiesFromDB.Criteria();
+		io.github.oliviercailloux.y2016.xmcda.entities.Criteria crit = new io.github.oliviercailloux.y2016.xmcda.entities.Criteria();
 		crit.setLibelle(libelle);
 		crit.setPreference(preference);
 		
