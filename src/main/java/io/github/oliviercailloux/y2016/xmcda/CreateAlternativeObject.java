@@ -130,14 +130,19 @@ public class CreateAlternativeObject extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String alternative = request.getParameter("alternative");	
 		
+		
+		//initialisation du jaxbcontext
 		JAXBContext jc = null;
 		try {
 			jc = JAXBContext.newInstance(Alternative.class);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
+		
+		//initialisation d'un marshaller 
 		Marshaller marshaller = null;
 		try {
+		
 			marshaller = jc.createMarshaller();
 		} catch (JAXBException e) {
 			e.printStackTrace();
@@ -146,7 +151,9 @@ public class CreateAlternativeObject extends HttpServlet {
 
 		final XmlSchema annotation = ObjectFactory.class.getPackage().getAnnotation(XmlSchema.class);
 		final String namespace = annotation.namespace();
-
+		
+		
+		//creation d'un objet Alternative 
 		final Alternative alt = f.createAlternative();
 		alt.setId(alternative);
 
@@ -184,6 +191,8 @@ public class CreateAlternativeObject extends HttpServlet {
 		/** Inelegant. (Impl. dependent.) */
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		final DOMSource source = new DOMSource(doc);
+		
+		//creation d'un fichier XML
 		final StreamResult result = new StreamResult(new File("alternative.xml"));
 		StringWriter writer = new StringWriter();
 		final StreamResult resultStream = new StreamResult(writer);
