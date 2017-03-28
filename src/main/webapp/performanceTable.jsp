@@ -8,7 +8,7 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <form name="form1" id="formulairedecontact" method="GET" action="/CreatePerformanceTableObject">	
+    <form name="form1" id="formulairedecontact" method="POST" action="CreatePerformanceTableObject">	
         <label>
 		<span>PerformanceTable :
 			<select name="mesurementOrCat">
