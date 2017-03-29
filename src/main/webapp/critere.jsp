@@ -8,7 +8,7 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <form name="form1" id="formulairedecontact" method="GET" action="/CreateCritereObject">	
+    <form name="form1" id="formulairedecontact" method="POST" action="CreateCritereObject">	
         <label>
 		<span>Critère :</span>    
 		<input type="text" placeholder="Tapez votre critère" name="critere" id="critere">
@@ -19,7 +19,7 @@
         </label>
         
         <input class="sendButton" type="submit" name="Submit" value="Ajouter objets">
-        <span><a href="index.jsp">Retour</a></span>
+        <span><a href="createObject.jsp">Retour</a></span>
 	</form>
 	</div>
    </div>	
