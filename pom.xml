@@ -53,6 +53,11 @@
 		    <artifactId>jaxb</artifactId>
 		    <version>0.0.1</version>
 		</dependency>
+		<dependency>
+		    <groupId>io.github.oliviercailloux</groupId>
+		    <artifactId>xmcda-2.2.1-jaxb</artifactId>
+		    <version>0.0.1</version>
+		</dependency>
 		  <dependency>
 		    <groupId>mysql</groupId>
 		    <artifactId>mysql-connector-java</artifactId>
