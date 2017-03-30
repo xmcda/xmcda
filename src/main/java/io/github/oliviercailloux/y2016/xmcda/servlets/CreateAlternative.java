@@ -38,7 +38,7 @@ import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
  * Servlet implementation class CreateObject
  */
 @WebServlet(urlPatterns = "/CreateAlternativeObject")
-public class CreateAlternativeObject extends HttpServlet {
+public class CreateAlternative extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	@Inject
@@ -50,7 +50,7 @@ public class CreateAlternativeObject extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CreateAlternativeObject() {
+	public CreateAlternative() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

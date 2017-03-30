@@ -39,14 +39,14 @@ import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
  * Servlet implementation class CreateCritereObject
  */
 @WebServlet(urlPatterns = "/CreateCritereObject")
-public class CreateCritereObject extends HttpServlet {
+public class CreateCriteria extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     @Inject Criteria criter; 
     
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateCritereObject() {
+    public CreateCriteria() {
         super();
         // TODO Auto-generated constructor stub
     }

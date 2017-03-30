@@ -39,14 +39,14 @@ import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
  * Servlet implementation class CreatePerformanceTableObject
  */
 @WebServlet(urlPatterns = "/CreatePerformanceTableObject")
-public class CreatePerformanceTableObject extends HttpServlet {
+public class CreatePerformanceTable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject PerformanTable perfTable;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreatePerformanceTableObject() {
+    public CreatePerformanceTable() {
         super();
         // TODO Auto-generated constructor stub
     }
