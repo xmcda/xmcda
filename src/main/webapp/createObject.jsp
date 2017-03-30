@@ -19,6 +19,7 @@
 		<span><a href="performanceTable.jsp">Ajouter une performanceTable</a></span>
         </label>
 	</form>
+	</br></br>
 	<span><a href="index.jsp">Accueil</a></span>
 	</div>
    </div>	

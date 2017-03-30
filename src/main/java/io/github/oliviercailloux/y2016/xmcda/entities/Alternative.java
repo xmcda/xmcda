@@ -1,15 +1,17 @@
 package io.github.oliviercailloux.y2016.xmcda.entities;
 
 import java.io.Serializable;
-import javax.persistence.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 /**
  * The persistent class for the alternative database table.
  * 
  */
 @Entity
-@NamedQuery(name="Alternative.findAll", query="SELECT a FROM Alternative a")
+@NamedQuery(name = "Alternative.findAll", query = "SELECT a FROM Alternative a")
 public class Alternative implements Serializable {
 	private static final long serialVersionUID = 1L;
 

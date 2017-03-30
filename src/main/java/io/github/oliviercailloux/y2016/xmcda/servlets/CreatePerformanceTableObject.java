@@ -30,7 +30,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import io.github.oliviercailloux.y2016.xmcda.beans.PerformanTable;
+import io.github.oliviercailloux.y2016.xmcda.beans.PerformanTableBean;
 import io.github.xmcda_modular.y2016.jaxb.Criterion;
 import io.github.xmcda_modular.y2016.jaxb.DirectedCriterion;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
@@ -41,7 +41,7 @@ import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 @WebServlet(urlPatterns = "/CreatePerformanceTableObject")
 public class CreatePerformanceTableObject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@Inject PerformanTable perfTable;
+	@Inject PerformanTableBean perfTable;
        
     /**
      * @see HttpServlet#HttpServlet()

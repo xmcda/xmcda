@@ -5,7 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @RequestScoped
-public class Criteria {
+public class CriteriaBean {
 	@PersistenceContext
 	private EntityManager em; 
 	
