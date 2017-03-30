@@ -44,7 +44,7 @@ public class ServletParsingXM extends HttpServlet {
 
 		printWriter.println("<h2>");
 
-		printWriter.println("Entrée dans la servlet à ");
+		printWriter.println("Entrée dans la servlet à  ");
 
 		printWriter.println("</h2>");
 
