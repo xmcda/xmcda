@@ -30,50 +30,47 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import io.github.oliviercailloux.y2016.xmcda.beans.CriteriaBean;
-import io.github.xmcda_modular.y2016.jaxb.Criterion;
-import io.github.xmcda_modular.y2016.jaxb.DirectedCriterion;
+import io.github.oliviercailloux.y2016.xmcda.beans.AlternativeBean;
+import io.github.xmcda_modular.y2016.jaxb.Alternative;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 
 /**
- * Servlet implementation class CreateCritereObject
+ * Servlet implementation class CreateObject
  */
-@WebServlet(urlPatterns = "/CreateCritereObject")
-public class CreateCritereObject extends HttpServlet {
+@WebServlet(urlPatterns = "/CreateAlternative")
+public class CreateAlternative extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-    @Inject CriteriaBean criter; 
-    
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CreateCritereObject() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	@Inject
+	AlternativeBean alter;
+	// @EJB
+	// private io.github.oliviercailloux.y2016.xmcda.objectsBeans.Alternative
+	// alterEJB;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		createCriteria(request, response);
+	public CreateAlternative() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		createCriteria(request, response);
-	}
-	protected void createCriteria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String critere = request.getParameter("critere");		 
-		String pref = request.getParameter("preference");
-//		criter.setPreference(pref);
-//		criter.setLibelle(critere);
-		criter.insertCriteria(critere, pref);
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String alternative = request.getParameter("alternative");
+		// alter.setLibelle(alternative);
+		// alter.insertAlternative(alternative);
+		// alterEJB.insertAlternative(alternative);
 		JAXBContext jc = null;
 		try {
-			jc = JAXBContext.newInstance(Criterion.class);
-		} catch (JAXBException e) {		
+			jc = JAXBContext.newInstance(Alternative.class);
+		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
 		Marshaller marshaller = null;
@@ -87,12 +84,11 @@ public class CreateCritereObject extends HttpServlet {
 		final XmlSchema annotation = ObjectFactory.class.getPackage().getAnnotation(XmlSchema.class);
 		final String namespace = annotation.namespace();
 
-		final DirectedCriterion directedCriterion = f.createDirectedCriterion();
-		directedCriterion.setId(critere);
-		directedCriterion.setPreferenceDirection(pref);
-	
-		final QName critQName = new QName(namespace, "critere", "xs");
-		final JAXBElement<Criterion> critEl = new JAXBElement<>(critQName, Criterion.class, directedCriterion);
+		final Alternative alt = f.createAlternative();
+		alt.setId(alternative);
+
+		final QName altQName = new QName(namespace, "alternative", "xs");
+		final JAXBElement<Alternative> altEl = new JAXBElement<>(altQName, Alternative.class, alt);
 
 		final DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = null;
@@ -104,12 +100,12 @@ public class CreateCritereObject extends HttpServlet {
 
 		final Document doc = docBuilder.newDocument();
 		docFactory.setNamespaceAware(true);
-		final Element rootElement = doc.createElementNS("namespace", "m:Critere");
+		final Element rootElement = doc.createElementNS("namespace", "m:Alternative");
 		rootElement.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:xs", namespace);
 		doc.appendChild(rootElement);
 
 		try {
-			marshaller.marshal(critEl, rootElement);
+			marshaller.marshal(altEl, rootElement);
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
@@ -126,20 +122,28 @@ public class CreateCritereObject extends HttpServlet {
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		final DOMSource source = new DOMSource(doc);
 		// final StreamResult result = new StreamResult(new File("file.xml"));
-		//final StreamResult resultFile = new StreamResult(new File("file.xml")); added by me
 		StringWriter writer = new StringWriter();
 		final StreamResult resultStream = new StreamResult(writer);
 		try {
 			transformer.transform(source, resultStream);
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String result = writer.toString(); 
-		
-		request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
-		//request.setAttribute("result", result);
-		request.getServletContext().getRequestDispatcher("/critereCreated.jsp").forward(request, response);
+		String result = writer.toString();
+
+		request.setAttribute("result", result.replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;"));
+		// request.setAttribute("result", result);
+		request.getServletContext().getRequestDispatcher("/alternativeCreated.jsp").forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 

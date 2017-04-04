@@ -11,7 +11,7 @@
     	<p>Votre PerformanceTable mesurement : </p> 
 	    <p><strong> <%=request.getAttribute("result")%> </strong></p> 
 	    <p>a été crée</p>    
-		<form name="form1" id="formulairedecontact" method="POST" action="CreatePerformanceTableObject">	
+		<form name="form1" id="formulairedecontact" method="GET" action="CreatePerformanceTable">	
 	        <label>
 	        <span>Create an other performanceTable :</span>
 			<span>
