@@ -19,7 +19,6 @@ public class PerformanTableBean {
 		perf.setUtilite(utilite);
 
 		em.persist(perf);
-		em.flush();
 	}
 
 	public void editPerformanceTable(String type, String utilite) {
@@ -32,6 +31,14 @@ public class PerformanTableBean {
 		} catch (Exception e) {
 			System.out.println("Error when merging object " + e.getMessage());
 		}
+	}
+
+	public void removePerformanceTable(String type, String utilite) {
+		Performancetable perfId = new Performancetable();
+		int primaryKey = perfId.getId();
+		Performancetable perf = em.find(Performancetable.class, primaryKey);
+
+		em.remove(perf);
 	}
 
 	// private String type;

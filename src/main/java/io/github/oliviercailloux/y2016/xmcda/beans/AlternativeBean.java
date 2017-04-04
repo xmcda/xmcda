@@ -4,6 +4,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import io.github.oliviercailloux.y2016.xmcda.entities.Alternative;
+
 @Stateless
 public class AlternativeBean {
 
@@ -16,7 +18,6 @@ public class AlternativeBean {
 
 		try {
 			em.persist(alt);
-			em.flush();
 		} catch (Exception e) {
 			System.out.println("Error when persist object " + e.getMessage());
 		}
@@ -30,6 +31,22 @@ public class AlternativeBean {
 			em.merge(alt);
 		} catch (Exception e) {
 			System.out.println("Error when merging object " + e.getMessage());
+		}
+	}
+
+	public void removeAlternative(String libelle) {
+		Alternative altId = new Alternative();
+		int primaryKey = altId.getId();
+		Alternative alt = null;
+		try {
+			em.find(Alternative.class, primaryKey);
+		} catch (Exception e) {
+			System.out.println("Error when find Alternative " + e);
+		}
+		try {
+			em.remove(alt);
+		} catch (Exception e) {
+			System.out.println("Error when remove Alternative " + e);
 		}
 	}
 
