@@ -36,7 +36,7 @@ public class CriteriaBean {
 		int primaryKey = critId.getId();
 		Criteria crit = em.find(Criteria.class, primaryKey);
 		try {
-
+			em.remove(crit);
 		} catch (Exception e) {
 			System.out.println("Error xhen rmeove object" + e.getMessage());
 		}
