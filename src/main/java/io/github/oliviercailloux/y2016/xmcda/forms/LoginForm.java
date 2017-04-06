@@ -15,11 +15,11 @@ public class LoginForm {
 	private static final String CHAMP_PASS = "motdepasse";
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String, String>();
-	private UserDao utilisateurDao1;
+	private UserDao userDao1;
 
 	public LoginForm(UserDao utilisateurDao) {
 
-		this.utilisateurDao1 = utilisateurDao;
+		this.userDao1 = utilisateurDao;
 	}
 
 	public String getResultat() {
@@ -43,7 +43,7 @@ public class LoginForm {
 					+ login.getMotDePasse());
 			if (erreurs.isEmpty()) {
 				System.out.println("je vais tester la trouver login dans le dao");
-				if (utilisateurDao1.trouverLogin(login.getEmail(), login.getMotDePasse()) != 0) {
+				if (userDao1.trouverLogin(login.getEmail(), login.getMotDePasse()) != 0) {
 					System.out.println("loginform oui j existe");
 					return login;
 				} else {
