@@ -8,7 +8,7 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <form name="form1" id="formulairedecontact" method="GET" action="CreateAlternativeObject">	
+    <form name="form1" id="formulairedecontact" method="GET" action="CreateAlternative">	
         <label>
 		<span>Alternative :</span>
         <input type="text" placeholder="Tapez votre alternative" name="alternative" id="alternative">
