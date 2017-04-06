@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
-public class Utilisateur implements Serializable {
+public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -29,7 +29,7 @@ public class Utilisateur implements Serializable {
 
 	private String prenom;
 
-	public Utilisateur() {
+	public User() {
 	}
 
 	public int getId() {

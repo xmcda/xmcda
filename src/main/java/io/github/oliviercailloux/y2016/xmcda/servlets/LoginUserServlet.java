@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import io.github.oliviercailloux.y2016.xmcda.dao.UtilisateurDao;
-import io.github.oliviercailloux.y2016.xmcda.entities.Utilisateur;
+import io.github.oliviercailloux.y2016.xmcda.dao.UserDao;
+import io.github.oliviercailloux.y2016.xmcda.entities.User;
 import io.github.oliviercailloux.y2016.xmcda.forms.LoginForm;
 
 /**
@@ -30,7 +30,7 @@ public class LoginUserServlet extends HttpServlet {
 	public static final String ATT_FORM = "form";
 	public static final String VUE = "/index.jsp";
 	@EJB
-	private UtilisateurDao utilisateurDao1;
+	private UserDao utilisateurDao1;
 
 	public LoginUserServlet() {
 		super();
@@ -56,7 +56,7 @@ public class LoginUserServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		LoginForm form = new LoginForm(utilisateurDao1);
 		PrintWriter out = response.getWriter();
-		Utilisateur login = null;
+		User login = null;
 		try {
 			login = form.login(request);
 			if (login != null) {

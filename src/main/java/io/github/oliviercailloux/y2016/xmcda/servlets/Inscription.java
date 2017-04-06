@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import io.github.oliviercailloux.y2016.xmcda.dao.UtilisateurDao;
-import io.github.oliviercailloux.y2016.xmcda.entities.Utilisateur;
+import io.github.oliviercailloux.y2016.xmcda.dao.UserDao;
+import io.github.oliviercailloux.y2016.xmcda.entities.User;
 import io.github.oliviercailloux.y2016.xmcda.forms.InscriptionForm;
 
 @WebServlet(urlPatterns = { "/inscription" })
@@ -27,7 +27,7 @@ public class Inscription extends HttpServlet {
 	public static final String ATT_FORM = "form";
 	public static final String VUE = "/index.jsp";
 	@EJB
-	private UtilisateurDao utilisateurDao;
+	private UserDao utilisateurDao;
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class Inscription extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		InscriptionForm form = new InscriptionForm(utilisateurDao);
 		PrintWriter out = response.getWriter();
-		Utilisateur utilisateur = null;
+		User utilisateur = null;
 		try {
 			utilisateur = form.inscrireUtilisateur(request);
 			request.setAttribute("user", utilisateur);
