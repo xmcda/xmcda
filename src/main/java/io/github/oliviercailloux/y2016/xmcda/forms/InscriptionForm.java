@@ -42,16 +42,16 @@ public final class InscriptionForm {
 		String nom = getValeurChamp( request, CHAMP_NOM );
 		Timestamp date = new Timestamp( System.currentTimeMillis() );
 
-		User utilisateur = new User();
+		User user = new User();
 		try {       
-			traiterEmail( email, utilisateur );
-			utilisateur.setMotDePasse(motDePasse);
-			utilisateur.setDateInscription( date );
-			utilisateur.setNom(nom); 
-			utilisateur.setPrenom(prenom);
+			traiterEmail( email, user );
+			user.setMotDePasse(motDePasse);
+			user.setDateInscription( date );
+			user.setNom(nom); 
+			user.setPrenom(prenom);
 			if ( erreurs.isEmpty() ) { 
 
-				utilisateurDao.creer(utilisateur);
+				utilisateurDao.creer(user);
 				System.out.println("good creation reussi");
 				resultat = "Succes de l'inscription.";
 			} else {  
@@ -61,7 +61,7 @@ public final class InscriptionForm {
 			resultat = "echec de l'inscription : une erreur  est survenue.";
 			e.printStackTrace(); 
 		}  
-		return utilisateur; 
+		return user; 
 	} 
 
 	/* * Ajoute un message correspondant au champ sp�cifi� � la map des erreurs. */
