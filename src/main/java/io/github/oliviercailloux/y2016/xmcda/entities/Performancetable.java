@@ -1,7 +1,8 @@
 package io.github.oliviercailloux.y2016.xmcda.entities;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -10,8 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQuery(name="Performancetable.findAll", query="SELECT p FROM Performancetable p")
-public class Performancetable implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Performancetable  {
 
 	@Id
 	private int id;

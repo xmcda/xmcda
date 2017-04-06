@@ -7,8 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import io.github.oliviercailloux.y2016.xmcda.dao.DAOException;
-import io.github.oliviercailloux.y2016.xmcda.dao.UtilisateurDao;
-import io.github.oliviercailloux.y2016.xmcda.entities.Utilisateur;
+import io.github.oliviercailloux.y2016.xmcda.dao.UserDao;
+import io.github.oliviercailloux.y2016.xmcda.entities.User;
 
 public final class InscriptionForm { 
 
@@ -20,10 +20,10 @@ public final class InscriptionForm {
 
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String,String>(); 
-	private UtilisateurDao utilisateurDao;
+	private UserDao utilisateurDao;
 	
 	
-	public InscriptionForm( UtilisateurDao utilisateurDao ) {  
+	public InscriptionForm( UserDao utilisateurDao ) {  
 		this.utilisateurDao = utilisateurDao;
 	}
 
@@ -35,14 +35,14 @@ public final class InscriptionForm {
 		return erreurs;
 	} 
 
-	public Utilisateur inscrireUtilisateur( HttpServletRequest request ) throws Exception {
+	public User inscrireUtilisateur( HttpServletRequest request ) throws Exception {
 		String email = getValeurChamp( request, CHAMP_EMAIL );
 		String motDePasse = getValeurChamp( request, CHAMP_PASS );
 		String prenom = getValeurChamp( request, CHAMP_PRENOM );
 		String nom = getValeurChamp( request, CHAMP_NOM );
 		Timestamp date = new Timestamp( System.currentTimeMillis() );
 
-		Utilisateur utilisateur = new Utilisateur();
+		User utilisateur = new User();
 		try {       
 			traiterEmail( email, utilisateur );
 			utilisateur.setMotDePasse(motDePasse);
@@ -79,7 +79,7 @@ public final class InscriptionForm {
 		}
 	}
 	/*verification de l existance de l email dans la base */ 
-	private void traiterEmail( String email, Utilisateur utilisateur ) throws Exception { 
+	private void traiterEmail( String email, User utilisateur ) throws Exception { 
 		try {       
 			validationEmail( email ); 
 		} catch ( FormValidationException e ) {      

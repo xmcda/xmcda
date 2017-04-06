@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import io.github.oliviercailloux.y2016.xmcda.dao.UtilisateurDao;
+import io.github.oliviercailloux.y2016.xmcda.dao.UserDao;
 import io.github.oliviercailloux.y2016.xmcda.entities.Login;
 import io.github.oliviercailloux.y2016.xmcda.entities.LoginUser;
-import io.github.oliviercailloux.y2016.xmcda.entities.Utilisateur;
+import io.github.oliviercailloux.y2016.xmcda.entities.User;
 import io.github.oliviercailloux.y2016.xmcda.forms.LoginForm;
 
 /**
@@ -34,7 +34,7 @@ public class LoginUserServlet extends HttpServlet {
 	public static final String VUE  = "/index.jsp";  
 	// Injection de notre EJB (Session Bean Stateless)  
 	@EJB   
-	private UtilisateurDao   utilisateurDao1; 
+	private UserDao   utilisateurDao1; 
     public LoginUserServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -57,7 +57,7 @@ public class LoginUserServlet extends HttpServlet {
 		LoginForm form = new LoginForm( utilisateurDao1);  
 		PrintWriter out = response.getWriter();
 		/* Traitement de la requ�te et recup�ration du bean en resultant */      
-		Utilisateur login = null;
+		User login = null;
 		try {
 			login = form.login( request );
 			if(login!=null){

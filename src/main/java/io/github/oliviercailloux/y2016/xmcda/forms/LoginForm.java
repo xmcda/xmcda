@@ -7,9 +7,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import io.github.oliviercailloux.y2016.xmcda.dao.DAOException;
-import io.github.oliviercailloux.y2016.xmcda.dao.UtilisateurDao;
+import io.github.oliviercailloux.y2016.xmcda.dao.UserDao;
 import io.github.oliviercailloux.y2016.xmcda.entities.LoginUser;
-import io.github.oliviercailloux.y2016.xmcda.entities.Utilisateur;
+import io.github.oliviercailloux.y2016.xmcda.entities.User;
 
 public class LoginForm {
 
@@ -17,9 +17,9 @@ public class LoginForm {
 	private static final String CHAMP_PASS   = "motdepasse"; 
 	private String resultat;
 	private Map<String, String> erreurs = new HashMap<String,String>(); 
-	private UtilisateurDao utilisateurDao1;
+	private UserDao utilisateurDao1;
 
-	public LoginForm (UtilisateurDao utilisateurDao ) {  
+	public LoginForm (UserDao utilisateurDao ) {  
 		
 		this.utilisateurDao1 = utilisateurDao;
 	}
@@ -31,12 +31,12 @@ public class LoginForm {
 		return erreurs;
 	} 
 
-	public Utilisateur login( HttpServletRequest request ) throws Exception {
+	public User login( HttpServletRequest request ) throws Exception {
 		String email = getValeurChamp( request, CHAMP_EMAIL );
 		String motDePasse = getValeurChamp( request, CHAMP_PASS );
 		System.out.println("dans le loginForm methode login : "+email + motDePasse);
 
-		Utilisateur login = new Utilisateur();
+		User login = new User();
 		try {       
 			//traiterEmail( email, login );
 			login.setEmail( email );

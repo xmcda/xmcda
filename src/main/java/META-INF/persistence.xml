@@ -6,7 +6,10 @@
 
 	<persistence-unit name="bdd_PU" transaction-type="JTA">
 		  <jta-data-source>jdbc/bonecp_resource</jta-data-source>
-		  <class>io.github.oliviercailloux.y2016.xmcda.entities.Utilisateur</class>
+		  <class>io.github.oliviercailloux.y2016.xmcda.entities.Performancetable</class>
+		  <class>io.github.oliviercailloux.y2016.xmcda.entities.Criteria</class>
+		  <class>io.github.oliviercailloux.y2016.xmcda.entities.User</class>
+		  <class>io.github.oliviercailloux.y2016.xmcda.entities.Resultat</class>
 		<properties />
 	</persistence-unit>
 </persistence>

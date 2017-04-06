@@ -1,12 +1,12 @@
 package io.github.oliviercailloux.y2016.xmcda.beans;
 
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import io.github.oliviercailloux.y2016.xmcda.entities.Performancetable;
 
-@RequestScoped
+@Stateless
 public class PerformanTable {
 	@PersistenceContext
 	private EntityManager em; 
@@ -21,7 +21,7 @@ try {
 	perf.setUtilite(utilite);
 	
 	em.persist(perf);
-	em.flush();
+	//em.flush();
 		} catch (Exception e) {
 			System.out.println("Error when persist object " + e.getMessage());
 		}
@@ -39,23 +39,4 @@ try {
 			System.out.println("Error when merging object "+e.getMessage());
 		}		
 	}
-	
-//	private String type;
-//	private String utilite;
-//	public PerformanTable() {
-//		// TODO Auto-generated constructor stub
-//	}
-//	public String getType() {
-//		return type;
-//	}
-//	public void setType(String type) {
-//		this.type = type;
-//	}
-//	public String getUtilite() {
-//		return utilite;
-//	}
-//	public void setUtilite(String utilite) {
-//		this.utilite = utilite;
-//	}
-
 }

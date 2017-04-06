@@ -3,6 +3,7 @@ package io.github.oliviercailloux.y2016.xmcda.beans;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.NoResultException;
 
 @Stateless
 public class AlternativeBean {
@@ -11,12 +12,13 @@ public class AlternativeBean {
 	private EntityManager em;
 
 	public void insertAlternative(String libelle) {
+	//public  insertAlternative(String libelle) {
 		io.github.oliviercailloux.y2016.xmcda.entities.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entities.Alternative();
-		alt.setLibelle(libelle);
-
+		alt.setLebelle(libelle);
+		System.out.println("la valeur de libelle dans alternative"+alt.getLebelle());
 		try {
 			em.persist(alt);
-			em.flush();
+			//em.flush();
 		} catch (Exception e) {
 			System.out.println("Error when persist object " + e.getMessage());
 		}
@@ -24,7 +26,7 @@ public class AlternativeBean {
 
 	public void editAlternative(String libelle) {
 		io.github.oliviercailloux.y2016.xmcda.entities.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entities.Alternative();
-		alt.setLibelle(libelle);
+		alt.setLebelle(libelle);
 
 		try {
 			em.merge(alt);
@@ -33,21 +35,4 @@ public class AlternativeBean {
 		}
 	}
 
-	// private int id;
-	// private String libelle;
-	// public Alternative() {
-	// // TODO Auto-generated constructor stub
-	// }
-	// public int getId() {
-	// return id;
-	// }
-	// public void setId(int id) {
-	// this.id = id;
-	// }
-	// public String getLibelle() {
-	// return libelle;
-	// }
-	// public void setLibelle(String libelle) {
-	// this.libelle = libelle;
-	// }
 }

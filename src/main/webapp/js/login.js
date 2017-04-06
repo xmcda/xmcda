@@ -118,6 +118,7 @@ function enregistrer(password, firstname, name, mail){
 		alert("data normal"+data);
 			if((new String(data).valueOf() == new String("n").valueOf()) || data.error!==undefined){
 				alert("dattaaa error :"+ data.error);
+				window.location.href="/xmcda/signup.jsp";
 			}else{
 				window.location.href="/xmcda/index.jsp";
 			}	

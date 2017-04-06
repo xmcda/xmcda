@@ -15,7 +15,17 @@
 
 	<div id="wrapper">
 
-		<%@ include file="/include/navbar.jsp"%>
+		<!--  <%@ include file="/include/navbar.jsp"  %> -->
+		<c:if test="${sessionScope['user'] != null}">
+
+			<%@ include file="/include/navbarbis.jsp"%>
+		</c:if>
+
+		<c:if test="${sessionScope['user'] == null}">
+
+			<%@ include file="/include/navbar.jsp"%>
+		</c:if>
+		
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-6 col-lg-offset-3">
@@ -34,6 +44,14 @@
 			</div>
 			<!-- /.row -->
 		</div>
+					<form action="index.jsp">
+					<div class="col-lg-12 text-center">
+						<br>
+						
+						<button class="btn btn-primary" type="submit">Enregistrer</button>
+						
+					</div>
+				</form>
 		<!-- /#page-wrapper -->
 	</div>
 </body>
