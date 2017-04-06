@@ -30,7 +30,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import io.github.oliviercailloux.y2016.xmcda.beans.PerformanTable;
+import io.github.oliviercailloux.y2016.xmcda.beans.PerformanTableBean;
 import io.github.xmcda_modular.y2016.jaxb.Criterion;
 import io.github.xmcda_modular.y2016.jaxb.DirectedCriterion;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
@@ -41,39 +41,33 @@ import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 @WebServlet(urlPatterns = "/CreatePerformanceTableObject")
 public class CreatePerformanceTable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@Inject PerformanTable perfTable;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CreatePerformanceTable() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	@Inject
+	PerformanTableBean perfTable;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			createPerformaceTable(request, response);
+	public CreatePerformanceTable() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		createPerformaceTable(request, response);
-	}
-	protected void createPerformaceTable(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String mesurementOrCat = request.getParameter("mesurementOrCat");	
-		
-		if(mesurementOrCat.equals("Mesurement")){
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String mesurementOrCat = request.getParameter("mesurementOrCat");
+
+		if (mesurementOrCat.equals("Mesurement")) {
 			String utilite = request.getParameter("utilite");
 			perfTable.insertPerformanceTable(mesurementOrCat, utilite);
 			JAXBContext jc = null;
 			try {
 				jc = JAXBContext.newInstance(Criterion.class);
-			} catch (JAXBException e) {		
+			} catch (JAXBException e) {
 				e.printStackTrace();
 			}
 			Marshaller marshaller = null;
@@ -90,7 +84,7 @@ public class CreatePerformanceTable extends HttpServlet {
 			final DirectedCriterion directedCriterion = f.createDirectedCriterion();
 			directedCriterion.setId(mesurementOrCat);
 			directedCriterion.setPreferenceDirection(utilite);
-		
+
 			final QName critQName = new QName(namespace, "critere", "xs");
 			final JAXBElement<Criterion> critEl = new JAXBElement<>(critQName, Criterion.class, directedCriterion);
 
@@ -125,7 +119,8 @@ public class CreatePerformanceTable extends HttpServlet {
 			/** Inelegant. (Impl. dependent.) */
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			final DOMSource source = new DOMSource(doc);
-			// final StreamResult result = new StreamResult(new File("file.xml"));
+			// final StreamResult result = new StreamResult(new
+			// File("file.xml"));
 			StringWriter writer = new StringWriter();
 			final StreamResult resultStream = new StreamResult(writer);
 			try {
@@ -133,18 +128,18 @@ public class CreatePerformanceTable extends HttpServlet {
 			} catch (TransformerException e) {
 				e.printStackTrace();
 			}
-			String result = writer.toString(); 
-			
-			request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
+			String result = writer.toString();
+
+			request.setAttribute("result", result.replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;"));
 			request.getServletContext().getRequestDispatcher("/mesurementCreated.jsp").forward(request, response);
 
-		}else{
+		} else {
 			String utilite = request.getParameter("utilite");
 			perfTable.insertPerformanceTable(mesurementOrCat, utilite);
 			JAXBContext jc = null;
 			try {
 				jc = JAXBContext.newInstance(Criterion.class);
-			} catch (JAXBException e) {		
+			} catch (JAXBException e) {
 				e.printStackTrace();
 			}
 			Marshaller marshaller = null;
@@ -161,7 +156,7 @@ public class CreatePerformanceTable extends HttpServlet {
 			final DirectedCriterion directedCriterion = f.createDirectedCriterion();
 			directedCriterion.setId(mesurementOrCat);
 			directedCriterion.setPreferenceDirection(utilite);
-		
+
 			final QName critQName = new QName(namespace, "critere", "xs");
 			final JAXBElement<Criterion> critEl = new JAXBElement<>(critQName, Criterion.class, directedCriterion);
 
@@ -196,7 +191,8 @@ public class CreatePerformanceTable extends HttpServlet {
 			/** Inelegant. (Impl. dependent.) */
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			final DOMSource source = new DOMSource(doc);
-			// final StreamResult result = new StreamResult(new File("file.xml"));
+			// final StreamResult result = new StreamResult(new
+			// File("file.xml"));
 			StringWriter writer = new StringWriter();
 			final StreamResult resultStream = new StreamResult(writer);
 			try {
@@ -205,14 +201,20 @@ public class CreatePerformanceTable extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String result = writer.toString(); 
-			
-			request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
-			request.getServletContext().getRequestDispatcher("/categorieCreated.jsp").forward(request, response);
-		
-		}
+			String result = writer.toString();
 
+			request.setAttribute("result", result.replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;"));
+			request.getServletContext().getRequestDispatcher("/categorieCreated.jsp").forward(request, response);
+		}
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
+	}
 }

@@ -30,7 +30,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import io.github.oliviercailloux.y2016.xmcda.beans.Criteria;
+import io.github.oliviercailloux.y2016.xmcda.beans.CriteriaBean;
 import io.github.xmcda_modular.y2016.jaxb.Criterion;
 import io.github.xmcda_modular.y2016.jaxb.DirectedCriterion;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
@@ -41,40 +41,34 @@ import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 @WebServlet(urlPatterns = "/CreateCritereObject")
 public class CreateCriteria extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    @Inject Criteria criter; 
-    
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CreateCriteria() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	@Inject
+	CriteriaBean criter;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		createCriteria(request, response);
+	public CreateCriteria() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		createCriteria(request, response);
-	}
-	protected void createCriteria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String critere = request.getParameter("critere");		 
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String critere = request.getParameter("critere");
 		String pref = request.getParameter("preference");
-		System.out.println("voila ce que ma requete me donne "+critere+pref);
+		System.out.println("voila ce que ma requete me donne " + critere + pref);
 		System.out.println("je suis dans las ervlet creteria1");
-		//criter.insertCriteria(critere, pref);
+		// criter.insertCriteria(critere, pref);
 		System.out.println("je sors de la ervlet creteria1");
 		JAXBContext jc = null;
 		try {
 			jc = JAXBContext.newInstance(Criterion.class);
-		} catch (JAXBException e) {		
+		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
 		Marshaller marshaller = null;
@@ -91,7 +85,7 @@ public class CreateCriteria extends HttpServlet {
 		final DirectedCriterion directedCriterion = f.createDirectedCriterion();
 		directedCriterion.setId(critere);
 		directedCriterion.setPreferenceDirection(pref);
-	
+
 		final QName critQName = new QName(namespace, "critere", "xs");
 		final JAXBElement<Criterion> critEl = new JAXBElement<>(critQName, Criterion.class, directedCriterion);
 
@@ -127,7 +121,8 @@ public class CreateCriteria extends HttpServlet {
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		final DOMSource source = new DOMSource(doc);
 		// final StreamResult result = new StreamResult(new File("file.xml"));
-		//final StreamResult resultFile = new StreamResult(new File("file.xml")); added by me
+		// final StreamResult resultFile = new StreamResult(new
+		// File("file.xml")); added by me
 		StringWriter writer = new StringWriter();
 		final StreamResult resultStream = new StreamResult(writer);
 		try {
@@ -136,12 +131,20 @@ public class CreateCriteria extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String result = writer.toString(); 
-		
-		request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
-		//request.setAttribute("result", result);
-		request.getServletContext().getRequestDispatcher("/critereCreated.jsp").forward(request, response);
+		String result = writer.toString();
 
+		request.setAttribute("result", result.replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;"));
+		// request.setAttribute("result", result);
+		request.getServletContext().getRequestDispatcher("/critereCreated.jsp").forward(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+	}
 }

@@ -63,21 +63,6 @@ public class CreateAlternative extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		createAlternative(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		createAlternative(request, response);
-	}
-
-	protected void createAlternative(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		String alternative = request.getParameter("alternative");
 		// alter.setLibelle(alternative);
 		alter.insertAlternative(alternative);
@@ -152,4 +137,12 @@ public class CreateAlternative extends HttpServlet {
 
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	}
 }
