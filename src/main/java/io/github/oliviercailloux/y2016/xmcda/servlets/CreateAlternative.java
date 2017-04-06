@@ -40,9 +40,7 @@ public class CreateAlternative extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	AlternativeBean alter;
-	// @EJB
-	// private io.github.oliviercailloux.y2016.xmcda.objectsBeans.Alternative
-	// alterEJB;
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -61,9 +59,7 @@ public class CreateAlternative extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String alternative = request.getParameter("alternative");
-		// alter.setLibelle(alternative);
 		alter.insertAlternative(alternative);
-		// alterEJB.insertAlternative(alternative);
 		JAXBContext jc = null;
 		try {
 			jc = JAXBContext.newInstance(Alternative.class);
