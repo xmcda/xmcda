@@ -52,7 +52,7 @@ public class LoginForm {
 				}
 			}
 		} catch (DAOException e) {
-			resultat = "echec de l'inscription : une erreur  est survenue.";
+			resultat = "Echec de l'inscription : une erreur  est survenue.";
 			e.printStackTrace();
 		}
 		return null;
