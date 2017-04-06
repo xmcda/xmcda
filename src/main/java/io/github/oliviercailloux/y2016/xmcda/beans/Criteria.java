@@ -16,11 +16,9 @@ public class Criteria {
 			
 			crit.setLebelle(libelle);
 			crit.setPreference(preference);
-			System.out.println("crite"+crit.getLebelle()+crit.getPreference());
+			
 			em.persist(crit);
-			//em.persist(crit);
-			//em.flush();
-			System.out.println("je suis dans le bean creteria, je termine l insersion");
+			
 		} catch (Exception e) {
 			System.out.println("Error when persist object " + e.getMessage());
 		}

@@ -1,8 +1,9 @@
 package io.github.oliviercailloux.y2016.xmcda.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,18 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import io.github.oliviercailloux.y2016.xmcda.dao.UserDao;
+import io.github.oliviercailloux.y2016.xmcda.entities.Resultat;
+import io.github.oliviercailloux.y2016.xmcda.entities.User;
+
 /**
- * Servlet implementation class logout
+ * Servlet implementation class Resultat
  */
-@WebServlet("/logout")
-public class logout extends HttpServlet {
+@WebServlet("/Resultat")
+public class Resulta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE  = "/index.jsp"; 
+	@EJB   
+	private UserDao   utilisateurDao; 
+	@Inject io.github.oliviercailloux.y2016.xmcda.entities.Resultat res;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public logout() {
+    public Resulta() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +38,8 @@ public class logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		/*PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
-		session.setAttribute("user",null);
-		session.invalidate();
-		out.print("y");*/
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
@@ -44,12 +47,20 @@ public class logout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
+		doGet(request, response);
+		// recuperation de l email de l utilisatteur, 
 		HttpSession session = request.getSession();
-		session.setAttribute("user",null);
-		session.invalidate();
-		//getServletContext().getRequestDispatcher(VUE).forward( request, response );
-		out.print("y");
+		User us= (User) session.getAttribute("user");
+		String mail = us.getEmail();
+		String ress = (String) session.getAttribute("result");
+		// recuperation du resultat
+		// construction de l objet resultat
+		Resultat res = new Resultat();
+		res.setResultwebservice(ress);
+		res.setMailuser(mail);
+		// persister dans la table
+		utilisateurDao.saveReuslt(res);
+		
 	}
 
 }

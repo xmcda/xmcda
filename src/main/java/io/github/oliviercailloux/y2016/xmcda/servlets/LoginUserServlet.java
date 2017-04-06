@@ -61,25 +61,21 @@ public class LoginUserServlet extends HttpServlet {
 		try {
 			login = form.login( request );
 			if(login!=null){
-				//request.setAttribute( ATT_FORM, form);  
-				//request.setAttribute( ATT_USER, login);  
+				HttpSession session = request.getSession();
+				session.setAttribute("user",login);
+				out.print("y");
 				
 			}else{
-				System.out.println("voila la valeur de login : " + login);
+				
 				out.print("n");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
-		/* Stockage du formulaire et du bean dans l'objet request
-		 */
-		
-		//System.out.println("resultat de la session: " + session.getAttribute(ATT_USER).toString());
-		//getServletContext().getRequestDispatcher(VUE).forward( request, response );
-		HttpSession session = request.getSession();
+		/*HttpSession session = request.getSession();
 		session.setAttribute("user",login);
-		out.print("y");
+		out.print("y");*/
 		
 	}		 	
 }

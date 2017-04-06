@@ -43,7 +43,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.40</version>
 		</dependency>
-		<dependency>
+		  <dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>13.0.1</version>
@@ -60,117 +60,50 @@
 			<version>0.8.0.RELEASE</version>
 		</dependency>
 
-		<!--  <dependency>
-			<groupId>io.github.oliviercailloux</groupId>
-			<artifactId>xmcda-2.2.1-jaxb</artifactId>
-			<version>0.0.1</version>
-		</dependency>-->
+		
 		<dependency>
 			<groupId>io.github.xmcda-modular</groupId>
 			<artifactId>jaxb</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-<!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+
 		<dependency>
    		 	<groupId>dom4j</groupId>
     		<artifactId>dom4j</artifactId>
     		<version>1.6.1</version>
 		</dependency>
 
-		<!--  <dependency>
-			<groupId>org.glassfish.jersey.ext.cdi</groupId>
-			<artifactId>jersey-cdi1x-servlet</artifactId>
-			<version>2.26-b03</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.ext.cdi</groupId>
-			<artifactId>jersey-weld2-se</artifactId>
-			<version>2.26-b03</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.ext.cdi</groupId>
-			<artifactId>jersey-cdi1x</artifactId>
-			<version>2.26-b03</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.containers.glassfish</groupId>
-			<artifactId>jersey-gf-cdi</artifactId>
-			<version>2.14</version>
-		</dependency>-->
-		<!-- <dependency> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
-			<version>3.6.1</version> <type>maven-plugin</type> </dependency> -->
+		
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>3.6.10.Final</version>
-			<!-- <exclusions> <exclusion> <artifactId>antlr</artifactId> <groupId>antlr</groupId> 
-				</exclusion> <exclusion> <artifactId>commons-collections</artifactId> <groupId>commons-collections</groupId> 
-				</exclusion> <exclusion> <artifactId>slf4j-api</artifactId> <groupId>org.slf4j</groupId> 
-				</exclusion> <exclusion> <artifactId>dom4j</artifactId> <groupId>dom4j</groupId> 
-				</exclusion> <exclusion> <artifactId>jta</artifactId> <groupId>javax.transaction</groupId> 
-				</exclusion> </exclusions>
-			<optional>false</optional>-->
+			
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>3.6.10.Final</version>
-			<!--  <exclusions>
-				<exclusion>
-					<artifactId>asm</artifactId>
-					<groupId>asm</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>javassist</artifactId>
-					<groupId>javassist</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>cglib</artifactId>
-					<groupId>cglib</groupId>
-				</exclusion>
-			</exclusions>
-			<optional>false</optional>-->
+			
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>3.1.0.GA</version>
-			<!-- <exclusions>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
-			<optional>false</optional> -->
+			
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
 			<version>3.2.0.Final</version>
-			<!-- <exclusions>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
-			<optional>false</optional> -->
+			
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search</artifactId>
 			<version>4.1.0.Final</version>
-			<!-- <exclusions>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
-			<optional>false</optional> -->
+			
 		</dependency>
 	</dependencies>
 

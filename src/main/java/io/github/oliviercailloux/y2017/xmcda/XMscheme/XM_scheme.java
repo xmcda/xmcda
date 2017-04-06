@@ -148,7 +148,7 @@ public class XM_scheme{
 				subs.add(doc.createElement(getInputs().get(i).getName()));
 			}
 		}
-		doc.appendChild(submit);
+	doc.appendChild(submit);
 //		for (int i = 0; i < subs.size(); i++) {
 //			submit.appendChild(subs.get(i));
 //		}

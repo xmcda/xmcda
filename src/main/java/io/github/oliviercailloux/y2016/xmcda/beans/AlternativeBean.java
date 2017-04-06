@@ -12,13 +12,13 @@ public class AlternativeBean {
 	private EntityManager em;
 
 	public void insertAlternative(String libelle) {
-	//public  insertAlternative(String libelle) {
+
 		io.github.oliviercailloux.y2016.xmcda.entities.Alternative alt = new io.github.oliviercailloux.y2016.xmcda.entities.Alternative();
 		alt.setLebelle(libelle);
-		System.out.println("la valeur de libelle dans alternative"+alt.getLebelle());
+		
 		try {
 			em.persist(alt);
-			//em.flush();
+			
 		} catch (Exception e) {
 			System.out.println("Error when persist object " + e.getMessage());
 		}

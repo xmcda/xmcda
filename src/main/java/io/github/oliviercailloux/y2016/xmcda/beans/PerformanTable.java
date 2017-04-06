@@ -21,7 +21,7 @@ try {
 	perf.setUtilite(utilite);
 	
 	em.persist(perf);
-	//em.flush();
+	
 		} catch (Exception e) {
 			System.out.println("Error when persist object " + e.getMessage());
 		}

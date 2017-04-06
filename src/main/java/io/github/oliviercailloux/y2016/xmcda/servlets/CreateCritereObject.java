@@ -67,8 +67,7 @@ public class CreateCritereObject extends HttpServlet {
 	protected void createCriteria(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String critere = request.getParameter("critere");		 
 		String pref = request.getParameter("preference");
-		System.out.println("voila ce que ma requete me donne "+critere+pref);
-		System.out.println("je suis dans las ervlet creteria1");
+		
 		criter.insertCriteria(critere, pref);
 		System.out.println("je sors de la ervlet creteria1");
 		JAXBContext jc = null;
@@ -126,8 +125,7 @@ public class CreateCritereObject extends HttpServlet {
 		/** Inelegant. (Impl. dependent.) */
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		final DOMSource source = new DOMSource(doc);
-		// final StreamResult result = new StreamResult(new File("file.xml"));
-		//final StreamResult resultFile = new StreamResult(new File("file.xml")); added by me
+		
 		StringWriter writer = new StringWriter();
 		final StreamResult resultStream = new StreamResult(writer);
 		try {
@@ -137,9 +135,11 @@ public class CreateCritereObject extends HttpServlet {
 			e.printStackTrace();
 		}
 		String result = writer.toString(); 
-		
-		request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
-		//request.setAttribute("result", result);
+		result.replace("\"","&quot;");
+		result.replace("<","&lt;");
+		result.replace(">","&gt;");
+		request.setAttribute("result", result);
+		//request.setAttribute("result", result.replace("\"","&quot;").replace("<","&lt;").replace(">","&gt;"));
 		request.getServletContext().getRequestDispatcher("/critereCreated.jsp").forward(request, response);
 
 	}
