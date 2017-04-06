@@ -34,10 +34,7 @@ import io.github.oliviercailloux.y2016.xmcda.beans.AlternativeBean;
 import io.github.xmcda_modular.y2016.jaxb.Alternative;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 
-/**
- * Servlet implementation class CreateObject
- */
-@WebServlet(urlPatterns = "/CreateAlternativeObject")
+@WebServlet(urlPatterns = "/CreateAlternative")
 public class CreateAlternative extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

@@ -36,9 +36,9 @@ import io.github.xmcda_modular.y2016.jaxb.DirectedCriterion;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 
 /**
- * Servlet implementation class CreateCritereObject
+ * Servlet implementation class CreateCritere
  */
-@WebServlet(urlPatterns = "/CreateCritereObject")
+@WebServlet(urlPatterns = "/CreateCritere")
 public class CreateCriteria extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject

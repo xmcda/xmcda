@@ -6,42 +6,18 @@
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
   	<servlet-name>Accueil</servlet-name>
-  	<display-name>Accueil</display-name>
-  	<description></description>
   	<servlet-class>servlets.Accueil</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>CreateCritereObject</servlet-name>
-  	<display-name>CreateCritereObject</display-name>
-  	<description></description>
-  	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreateCritereObject</servlet-class>
+  	<servlet-name>CreateCritere</servlet-name>  
+  	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreateCritere</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>CreateAlternativeObject</servlet-name>
-  	<display-name>CreateAlternativeObject</display-name>
-  	<description></description>
-  	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreateAlternativeObject</servlet-class>
+  	<servlet-name>CreateAlternative</servlet-name>
+  	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreateAlternative</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>CreatePerformanceTableObject</servlet-name>
-  	<display-name>CreatePerformanceTableObject</display-name>
-  	<description></description>
-  	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreatePerformanceTableObject</servlet-class>
+  	<servlet-name>CreatePerformanceTable</servlet-name>
+  	<servlet-class>io.github.oliviercailloux.y2016.xmcda.CreatePerformanceTable</servlet-class>
   </servlet>
-  <servlet-mapping>
-  	<servlet-name>Accueil</servlet-name>
-  	<url-pattern>/Accueil</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>CreateCritereObject</servlet-name>
-  	<url-pattern>/CreateCritereObject</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>CreateAlternativeObject</servlet-name>
-  	<url-pattern>/CreateAlternativeObject</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>CreatePerformanceTableObject</servlet-name>
-  	<url-pattern>/CreatePerformanceTableObject</url-pattern>
-  </servlet-mapping>
-</web-app>
+ </web-app>

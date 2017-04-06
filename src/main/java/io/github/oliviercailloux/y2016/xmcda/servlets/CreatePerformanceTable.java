@@ -36,9 +36,9 @@ import io.github.xmcda_modular.y2016.jaxb.DirectedCriterion;
 import io.github.xmcda_modular.y2016.jaxb.ObjectFactory;
 
 /**
- * Servlet implementation class CreatePerformanceTableObject
+ * Servlet implementation class CreatePerformanceTable
  */
-@WebServlet(urlPatterns = "/CreatePerformanceTableObject")
+@WebServlet(urlPatterns = "/CreatePerformanceTable")
 public class CreatePerformanceTable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Inject
