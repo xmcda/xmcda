@@ -12,11 +12,10 @@ public class PerformanTableBean {
 	private EntityManager em;
 
 	public void insertPerformanceTable(String type, String utilite) {
+		Performancetable perf = new Performancetable();
+		perf.setType(type);
+		perf.setUtilite(utilite);
 		try {
-			Performancetable perf = new Performancetable();
-			perf.setType(type);
-			perf.setUtilite(utilite);
-
 			em.persist(perf);
 		} catch (Exception e) {
 			System.out.println("Error when persist object " + e.getMessage());

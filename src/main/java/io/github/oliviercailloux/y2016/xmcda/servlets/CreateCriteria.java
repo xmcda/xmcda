@@ -120,21 +120,16 @@ public class CreateCriteria extends HttpServlet {
 		/** Inelegant. (Impl. dependent.) */
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		final DOMSource source = new DOMSource(doc);
-		// final StreamResult result = new StreamResult(new File("file.xml"));
-		// final StreamResult resultFile = new StreamResult(new
-		// File("file.xml")); added by me
 		StringWriter writer = new StringWriter();
 		final StreamResult resultStream = new StreamResult(writer);
 		try {
 			transformer.transform(source, resultStream);
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String result = writer.toString();
 
 		request.setAttribute("result", result.replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;"));
-		// request.setAttribute("result", result);
 		request.getServletContext().getRequestDispatcher("/critereCreated.jsp").forward(request, response);
 	}
 

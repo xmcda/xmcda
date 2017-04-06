@@ -16,44 +16,43 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/logout")
 public class logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String VUE  = "/index.jsp"; 
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public logout() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	public static final String VUE = "/index.jsp";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
-		session.setAttribute("user",null);
-		session.invalidate();
-		//getServletContext().getRequestDispatcher(VUE).forward( request, response );
-		System.out.println("ma reponse logout est la suivante : nuuuulll");
-		out.print("y");
-	    //response.sendRedirect("/");
+	public logout() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		HttpSession session = request.getSession();
-		session.setAttribute("user",null);
+		session.setAttribute("user", null);
 		session.invalidate();
-		//getServletContext().getRequestDispatcher(VUE).forward( request, response );
+		System.out.println("ma reponse logout est la suivante : nuuuulll");
+		out.print("y");
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+		session.setAttribute("user", null);
+		session.invalidate();
 		System.out.println("ma reponse logout est la suivante : nuuuulll");
 		out.print("y");
 	}

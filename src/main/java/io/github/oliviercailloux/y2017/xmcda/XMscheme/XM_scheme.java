@@ -113,7 +113,6 @@ public class XM_scheme {
 
 	public void setFileContentToNodeValue(String sourceFile, Node destNode) throws IOException {
 		final URL resUrl = getClass().getResource(sourceFile);
-		// final URL resUrl = new File(sourceFile).toURI().toURL();
 		final String resStr = Resources.toString(resUrl, StandardCharsets.UTF_8);
 		final Text textNode = destNode.getOwnerDocument().createTextNode(resStr);
 		destNode.appendChild(textNode);
@@ -144,19 +143,11 @@ public class XM_scheme {
 			}
 		}
 		doc.appendChild(submit);
-		// for (int i = 0; i < subs.size(); i++) {
-		// submit.appendChild(subs.get(i));
-		// }
 		for (int i = 0; i < subs.size(); i++) {
 			String content = subs.get(i).getTagName();
 			content += ".xml";
 			setFileContentToNodeValue(content, subs.get(i));
 		}
-		//
-		// setFileContentToNodeValue("C:/Users/Anis/Desktop/alternatives.xml",
-		// subs.get(0));
-		// setFileContentToNodeValue("C:/Users/Anis/Desktop/overallValues.xml",
-		// subs.get(1));
 
 		final Attr attrType1 = doc.createAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:type");
 		attrType1.setValue("xsd:string");

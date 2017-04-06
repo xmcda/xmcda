@@ -121,7 +121,6 @@ public class CreateAlternative extends HttpServlet {
 		/** Inelegant. (Impl. dependent.) */
 		transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 		final DOMSource source = new DOMSource(doc);
-		// final StreamResult result = new StreamResult(new File("file.xml"));
 		StringWriter writer = new StringWriter();
 		final StreamResult resultStream = new StreamResult(writer);
 		try {
@@ -132,9 +131,7 @@ public class CreateAlternative extends HttpServlet {
 		String result = writer.toString();
 
 		request.setAttribute("result", result.replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;"));
-		// request.setAttribute("result", result);
 		request.getServletContext().getRequestDispatcher("/alternativeCreated.jsp").forward(request, response);
-
 	}
 
 	/**

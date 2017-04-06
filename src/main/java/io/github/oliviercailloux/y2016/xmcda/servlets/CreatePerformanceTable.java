@@ -119,8 +119,6 @@ public class CreatePerformanceTable extends HttpServlet {
 			/** Inelegant. (Impl. dependent.) */
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			final DOMSource source = new DOMSource(doc);
-			// final StreamResult result = new StreamResult(new
-			// File("file.xml"));
 			StringWriter writer = new StringWriter();
 			final StreamResult resultStream = new StreamResult(writer);
 			try {
@@ -198,7 +196,6 @@ public class CreatePerformanceTable extends HttpServlet {
 			try {
 				transformer.transform(source, resultStream);
 			} catch (TransformerException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String result = writer.toString();
