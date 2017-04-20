@@ -1,7 +1,8 @@
 package io.github.oliviercailloux.y2016.xmcda.entities;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 
 /**
@@ -10,13 +11,13 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQuery(name="Criteria.findAll", query="SELECT c FROM Criteria c")
-public class Criteria implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Criteria {
+	
 
 	@Id
 	private int id;
 
-	private String libelle;
+	private String lebelle;
 
 	private String preference;
 
@@ -31,12 +32,12 @@ public class Criteria implements Serializable {
 		this.id = id;
 	}
 
-	public String getLibelle() {
-		return this.libelle;
+	public String getLebelle() {
+		return this.lebelle;
 	}
 
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+	public void setLebelle(String lebelle) {
+		this.lebelle = lebelle;
 	}
 
 	public String getPreference() {

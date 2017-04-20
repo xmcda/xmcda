@@ -8,7 +8,7 @@
 
 <div class="wrapper">  
     <div id="notreformulaire">
-    <form name="form1" id="formulairedecontact" method="GET" action="CreateCritere">	
+    <form name="form1" id="formulairedecontact" method="POST" action="CreateCritereObject">	
     	<p>Votre Critere : </p> 
 	    <p><strong> <%=request.getAttribute("result")%> </strong></p> 
 	    <p>a été crée</p>

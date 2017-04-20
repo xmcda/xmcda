@@ -19,7 +19,17 @@
 
 	<div id="wrapper">
 
-		<%@ include file="/include/navbar.jsp"%>
+		 <!--<%@ include file="/include/navbar.jsp"  %> -->
+		 <c:if test="${sessionScope['user'] != null}">
+
+			<%@ include file="/include/navbarbis.jsp"%>
+		</c:if>
+
+		<c:if test="${sessionScope['user'] == null}">
+
+			<%@ include file="/include/navbar.jsp"%>
+		</c:if>
+		
 		<div class="row">
 			<div class="col-lg-12 v-center">
 

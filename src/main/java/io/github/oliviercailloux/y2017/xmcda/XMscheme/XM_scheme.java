@@ -1,5 +1,6 @@
 package io.github.oliviercailloux.y2017.xmcda.XMscheme;
 
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
@@ -37,16 +38,17 @@ import org.w3c.dom.Text;
 
 import com.google.common.io.Resources;
 
+
 /** @author Anis **/
 
 @RequestScoped
-public class XM_scheme {
+public class XM_scheme{
 	private static String ENDPOINT_ADDRESS = "http://webservices.decision-deck.org/soap/";
 
 	private static List<InputStruct> inputs = new ArrayList<InputStruct>();
 	private static String webServiceName;
 	private static String webServiceProvider;
-
+	
 	public static String getENDPOINT_ADDRESS() {
 		return ENDPOINT_ADDRESS;
 	}
@@ -113,12 +115,15 @@ public class XM_scheme {
 
 	public void setFileContentToNodeValue(String sourceFile, Node destNode) throws IOException {
 		final URL resUrl = getClass().getResource(sourceFile);
+		//final URL resUrl = new File(sourceFile).toURI().toURL();
 		final String resStr = Resources.toString(resUrl, StandardCharsets.UTF_8);
 		final Text textNode = destNode.getOwnerDocument().createTextNode(resStr);
 		destNode.appendChild(textNode);
 	}
-
-	public void ServiceInvoke(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	
+	 public void ServiceInvoke(HttpServletRequest request, HttpServletResponse response)
+				throws Exception  
+	{
 		final Service svc = Service.create(new QName("ServiceNamespace", "ServiceLocalPart"));
 		final QName portQName = new QName("PortNamespace", "PortLocalPart");
 		setENDPOINT_ADDRESS(webServiceName);
@@ -131,24 +136,31 @@ public class XM_scheme {
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
 		final DocumentBuilder builder = factory.newDocumentBuilder();
-		final String ticket = null;
+		final String ticket;
 		final Document doc = builder.newDocument();
 		final Element submit = doc.createElement("submitProblem");
 		submit.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xsd", "http://www.w3.org/2001/XMLSchema");
 		List<Element> subs = new ArrayList<Element>();
 		for (int i = 0; i < getInputs().size(); i++) {
-			// for now, we handle only the obligatory inputs
-			if (getInputs().get(i).getIsoptional().equals("0")) {
+			//for now, we handle only the obligatory inputs
+			if(getInputs().get(i).getIsoptional().equals("0"))
+			{
 				subs.add(doc.createElement(getInputs().get(i).getName()));
 			}
 		}
-		doc.appendChild(submit);
+	doc.appendChild(submit);
+//		for (int i = 0; i < subs.size(); i++) {
+//			submit.appendChild(subs.get(i));
+//		}
 		for (int i = 0; i < subs.size(); i++) {
 			String content = subs.get(i).getTagName();
 			content += ".xml";
 			setFileContentToNodeValue(content, subs.get(i));
 		}
-
+//		
+//		setFileContentToNodeValue("C:/Users/Anis/Desktop/alternatives.xml", subs.get(0));
+//		setFileContentToNodeValue("C:/Users/Anis/Desktop/overallValues.xml", subs.get(1));
+		
 		final Attr attrType1 = doc.createAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:type");
 		attrType1.setValue("xsd:string");
 		subs.get(0).setAttributeNodeNS(attrType1);
@@ -161,18 +173,16 @@ public class XM_scheme {
 		final Node firstChild = directChildren.item(0);
 		final NodeList subChildren = firstChild.getChildNodes();
 		final Node secondSubChild = subChildren.item(1);
-		// ticket = secondSubChild.getFirstChild().getTextContent();
+		ticket = secondSubChild.getFirstChild().getTextContent();
 		final Document requestSolutionDoc = builder.newDocument();
 		final Element requestSolution = requestSolutionDoc.createElement("requestSolution");
-		requestSolution.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xsd",
-				"http://www.w3.org/2001/XMLSchema");
+		requestSolution.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xsd", "http://www.w3.org/2001/XMLSchema");
 		final Element ticketEl = requestSolutionDoc.createElement("ticket");
 		requestSolutionDoc.appendChild(requestSolution);
 		requestSolution.appendChild(ticketEl);
 		final Text ticketTextNode = requestSolutionDoc.createTextNode(ticket);
 		ticketEl.appendChild(ticketTextNode);
-		final Attr attrType = requestSolutionDoc.createAttributeNS("http://www.w3.org/2001/XMLSchema-instance",
-				"xsi:type");
+		final Attr attrType = requestSolutionDoc.createAttributeNS("http://www.w3.org/2001/XMLSchema-instance", "xsi:type");
 		attrType.setValue("xsd:string");
 		ticketEl.setAttributeNodeNS(attrType);
 		final Node solution = invoke(dispatch, new DOMSource(requestSolutionDoc));

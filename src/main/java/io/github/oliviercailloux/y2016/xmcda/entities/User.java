@@ -6,11 +6,11 @@ import java.sql.Timestamp;
 
 
 /**
- * The persistent class for the utilisateur database table.
+ * The persistent class for the user database table.
  * 
  */
 @Entity
-@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 

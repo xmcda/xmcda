@@ -42,8 +42,7 @@ function enregistre(form){
 }
 
 function verifier_enregistrement(password, firstname, name, mail){
-	alert("je suis dans verifier enregistrement : "+password+firstname+name+mail);
-
+	
 	 if(!firstname || firstname.length === 0 || !name || name.length === 0){
 	    	creer_erreur_enregistrement("name and firstname required");
 			return false;
@@ -83,16 +82,15 @@ function connection(mail, password){
 			
 			if((new String(data).valueOf() == new String("n").valueOf()) || data.error!==undefined){
 			
-				//show_error_msg(data.error+" ("+data.code+")");
 				
 				window.location.href="/xmcda/login.jsp";
 				alert("maill or password not good, veuillez vous inscrir ou recommencer");
 			}else{
 				
-				$("#navconn").html('<li ><a href="javascript:deconnection()" ><i class="fa fa-sign-in"></i> Deconnexion</a></li>');
+				//$("#navconn").html('<li ><a href="javascript:deconnection()" ><i class="fa fa-sign-in"></i> Deconnexion</a></li>');
 			
 				window.location.href="/xmcda/index.jsp";
-				alert("oui je suis dans modif");
+				
 				
 				
 				
@@ -117,7 +115,8 @@ function enregistrer(password, firstname, name, mail){
 		success:function(data){
 		alert("data normal"+data);
 			if((new String(data).valueOf() == new String("n").valueOf()) || data.error!==undefined){
-				alert("dattaaa error :"+ data.error);
+				
+				window.location.href="/xmcda/signup.jsp";
 			}else{
 				window.location.href="/xmcda/index.jsp";
 			}	
@@ -134,8 +133,7 @@ alert("je suis bien dans deconncetion");
 		url:"logout",
 		dataType:"text",
 		success:function(data){
-		alert("reponse serveur : " +data);
-		alert("reponse serveur erreur  : " +data.error);
+		
 			if(data.error!==undefined){
 				alert("erreur de deconnection");	
 				}else{

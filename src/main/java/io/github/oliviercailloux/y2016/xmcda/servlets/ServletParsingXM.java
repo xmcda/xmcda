@@ -1,5 +1,8 @@
 package io.github.oliviercailloux.y2016.xmcda.servlets;
 
+import io.github.oliviercailloux.y2017.xmcda.XMscheme.InputStruct;
+import io.github.oliviercailloux.y2017.xmcda.XMscheme.ParsingDescriptionUrl;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -13,8 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import io.github.oliviercailloux.y2017.xmcda.XMscheme.InputStruct;
-import io.github.oliviercailloux.y2017.xmcda.XMscheme.ParsingDescriptionUrl;
 
 /**
  * Servlet implementation class ServletParsingXM
@@ -22,8 +23,7 @@ import io.github.oliviercailloux.y2017.xmcda.XMscheme.ParsingDescriptionUrl;
 @WebServlet("/Parsing")
 public class ServletParsingXM extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@Inject
-	ParsingDescriptionUrl parseur;
+	@Inject ParsingDescriptionUrl parseur;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -33,12 +33,9 @@ public class ServletParsingXM extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGetVersion2(request, response);
 	}
 
@@ -60,17 +57,17 @@ public class ServletParsingXM extends HttpServlet {
 
 			HttpServletResponse response) throws ServletException, IOException {
 
-		URL url = new URL("http://www.decision-deck.org/ws/_downloads/description-wsDD.xml");
-		ParsingDescriptionUrl parseur = new ParsingDescriptionUrl();
+		URL url=new URL("http://www.decision-deck.org/ws/_downloads/description-wsDD.xml");
+		ParsingDescriptionUrl parseur=new ParsingDescriptionUrl();
 		List<InputStruct> inputs;
 		try {
-			inputs = parseur.Parse(url, request);
+			inputs=parseur.Parse(url, request);
 			PrintWriter printWriter = response.getWriter();
 			printWriter.println("<h2>");
-			printWriter.println("La taille de la liste est " + inputs.size());
+			printWriter.println("La taille de la liste est "+ inputs.size());
 			printWriter.println("</h2>");
 			printWriter.println("<h2>");
-			printWriter.println("La taille de la liste est " + inputs.get(1).getName());
+			printWriter.println("La taille de la liste est "+ inputs.get(1).getName());
 			printWriter.println("</h2>");
 		} catch (Exception e2) {
 
@@ -79,12 +76,9 @@ public class ServletParsingXM extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPostVersion1(request, response);
 	}
 
@@ -93,22 +87,24 @@ public class ServletParsingXM extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String ul = request.getParameter("URL");
-			URL url = new URL(ul);
+			URL url=new URL(ul);
 			List<String> obligatoire = new ArrayList<String>();
-
+			
 			List<String> facultatif = new ArrayList<String>();
+			// replace with CDI context
+			//ParsingDescriptionUrl parseur = new ParsingDescriptionUrl();
 			List<InputStruct> inputs = parseur.Parse(url, request);
-			for (int i = 0; i < inputs.size(); i++) {
-				if (inputs.get(i).getIsoptional().equals("0")) {
+			for (int i=0;i<inputs.size();i++){
+				if(inputs.get(i).getIsoptional().equals("0")){
 					obligatoire.add(inputs.get(i).getName());
-				} else {
+				} else{
 					facultatif.add(inputs.get(i).getName());
 				}
 			}
 			request.setAttribute("obligatoires", obligatoire);
 			request.setAttribute("facultatifs", facultatif);
 			request.getRequestDispatcher("/parse.jsp").forward(request, response);
-
+			
 		} catch (Exception e) {
 
 			e.printStackTrace();
